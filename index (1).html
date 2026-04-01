@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNI HUB V6.8 | Jujutsu Shenanigans Script</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS VARIABLES */
+        :root {
+            --bg-main: #050507;
+            --bg-surface: rgba(20, 20, 25, 0.6);
+            --accent-primary: #ff2a40; /* Omni Red/Neon */
+            --accent-glow: rgba(255, 42, 64, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #8b8b99;
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { background-color: var(--bg-main); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; }
+        code { font-family: 'Fira Code', monospace; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: #1a1a24; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+        ::selection { background: var(--accent-primary); color: #000; }
+
+        /* PRE-LOADER */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+        }
+        .term-text { color: #00ff00; font-family: 'Fira Code', monospace; font-size: 14px; width: 100%; max-width: 650px; text-align: left; margin-bottom: 20px; }
+        .glitch-logo { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; color: var(--accent-primary); opacity: 0; transform: scale(0.9); transition: all 0.5s; text-shadow: 0 0 20px var(--accent-glow); }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 999; background: rgba(5, 5, 7, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; transition: all 0.3s ease;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 15px; font-family: 'Space Grotesk'; font-size: 1.5rem; letter-spacing: 2px;}
+        .nav-logo img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-primary); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.9rem; position: relative; transition: color 0.3s; cursor: pointer; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--accent-primary); transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+        
+        .nav-actions { display: flex; gap: 15px; align-items: center; }
+        .lang-btn { background: transparent; color: var(--text-muted); border: none; cursor: pointer; font-family: 'Space Grotesk'; font-size: 0.9rem; transition: 0.3s; }
+        .lang-btn:hover { color: var(--text-main); }
+        .nav-btn { background: transparent; color: var(--text-main); border: 1px solid var(--accent-primary); padding: 8px 20px; border-radius: 20px; font-family: 'Space Grotesk'; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(255, 42, 64, 0.1); }
+        .nav-btn:hover { background: var(--accent-primary); color: #000; box-shadow: 0 0 20px var(--accent-glow); }
+
+        /* HERO SECTION */
+        #hero {
+            min-height: 100vh; display: flex; align-items: center; padding: 0 10%;
+            background: radial-gradient(circle, rgba(5,5,7,0.5) 0%, rgba(5,5,7,1) 100%), url('noFilter.webp');
+            background-size: cover; background-position: center; background-attachment: fixed; position: relative; overflow: hidden;
+        }
+        .hero-content { z-index: 2; max-width: 650px; }
+        .hero-title { font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 0 30px rgba(255, 255, 255, 0.2); animation: tracking-in 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.6; }
+        
+        .glow-btn { position: relative; padding: 18px 40px; background: #111; color: var(--text-main); border: 1px solid var(--glass-border); border-radius: 8px; font-family: 'Space Grotesk'; font-size: 1.1rem; cursor: pointer; overflow: hidden; transition: border-color 0.3s; text-decoration: none; display: inline-block; }
+        .glow-btn::before { content: ''; position: absolute; top: var(--y); left: var(--x); transform: translate(-50%, -50%); width: 200px; height: 200px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; z-index: 0; }
+        .glow-btn:hover::before { opacity: 1; }
+        .glow-btn span { position: relative; z-index: 1; }
+
+        .hero-3d { position: absolute; right: 8%; top: 50%; transform: translateY(-50%); perspective: 1000px; }
+        .hero-3d img { width: 420px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 40px var(--accent-glow); animation: float 6s ease-in-out infinite; transition: transform 0.1s; border: 1px solid var(--glass-border); }
+
+        /* BENTO GRID (FEATURES) */
+        #features { padding: 100px 10%; background: var(--bg-main); position: relative; }
+        .section-title { font-size: 3rem; text-align: center; margin-bottom: 60px; color: var(--text-main); }
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; grid-auto-rows: 250px; }
+        .bento-card { background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 24px; padding: 30px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .bento-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); }
+        .bento-card h3 { color: var(--accent-primary); margin-bottom: 15px; font-size: 1.4rem; }
+        .bento-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
+        .card-large { grid-column: span 2; }
+
+        /* EXTENDED FEATURE LIST */
+        .feature-list-container { margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .feature-column h4 { font-size: 1.3rem; color: #fff; margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; }
+        .feature-column ul { list-style: none; }
+        .feature-column ul li { margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; }
+        .feature-column ul li::before { content: '▹'; color: var(--accent-primary); font-weight: bold; font-size: 1.2rem; }
+
+        /* HOW TO USE / TERMINAL */
+        #how-to { padding: 80px 10%; background: linear-gradient(180deg, var(--bg-main) 0%, #08080b 100%); }
+        .steps-container { display: flex; justify-content: space-between; gap: 30px; margin-bottom: 60px; flex-wrap: wrap;}
+        .step-box { flex: 1; background: var(--bg-surface); padding: 30px; border-radius: 16px; border: 1px solid var(--glass-border); min-width: 250px;}
+        .step-number { font-family: 'Space Grotesk'; font-size: 3rem; color: var(--accent-primary); opacity: 0.3; margin-bottom: -15px; }
+        .step-box h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .step-box p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+
+        .mac-terminal { width: 100%; max-width: 800px; margin: 0 auto; background: #0a0a0d; border-radius: 12px; border: 1px solid var(--glass-border); box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(255, 42, 64, 0.1); overflow: hidden; cursor: pointer; transition: transform 0.2s; }
+        .mac-terminal:hover { transform: scale(1.02); border-color: var(--accent-glow); }
+        .terminal-header { background: #15151e; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--glass-border); }
+        .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+        .close { background: #ff5f56; } .min { background: #ffbd2e; } .max { background: #27c93f; }
+        .terminal-body { padding: 40px; font-family: 'Fira Code', monospace; font-size: 1.1rem; color: #fff; word-break: break-all; }
+        .syntax-func { color: #61afef; } .syntax-str { color: #98c379; } .syntax-punct { color: #abb2bf; }
+
+        /* COMPATIBILITY STATUS */
+        #status { padding: 80px 10% 120px; }
+        .status-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; }
+        .status-table th, .status-table td { padding: 20px; text-align: left; border-bottom: 1px solid var(--glass-border); color: var(--text-main); }
+        .status-table th { font-family: 'Space Grotesk'; color: var(--text-muted); font-size: 0.9rem; letter-spacing: 1px; }
+        .status-dot { display: inline-block; width: 10px; height: 10px; background: #00ff00; border-radius: 50%; margin-right: 10px; box-shadow: 0 0 10px #00ff00; animation: pulse 2s infinite; }
+
+        /* FOOTER */
+        footer { background: #020203; padding: 40px 10%; text-align: center; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.9rem; }
+        
+        /* TOAST NOTIFICATION */
+        #toast { position: fixed; bottom: -100px; right: 30px; background: #1a1a24; border: 1px solid var(--accent-primary); padding: 15px 25px; border-radius: 8px; font-family: 'Space Grotesk'; font-size: 1rem; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: bottom 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 1000; }
+        #toast.show { bottom: 30px; }
+        .toast-bar { position: absolute; bottom: 0; left: 0; height: 3px; background: var(--accent-primary); width: 100%; }
+
+        /* ANIMATIONS */
+        .observe-me { opacity: 0; transform: translateY(40px) scale(0.95); transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
+        .observe-me.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+        @keyframes tracking-in { 0% { letter-spacing: 0.5em; opacity: 0; } 100% { letter-spacing: normal; opacity: 1; } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero-3d { display: none; }
+            .hero-content { margin: 0 auto; text-align: center; }
+            .nav-links { display: none; }
+            .hero-title { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="term-text" id="term-text"></div>
+        <div class="glitch-logo" id="pre-logo" style="display:none;">OMNI HUB V6.8</div>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-logo">
+            <img src="OMNI-HUB-PNG.png" alt="Omni Logo">
+            <span>OMNI HUB</span>
+        </div>
+        <div class="nav-links">
+            <a href="#features" class="lang" data-en="Features" data-es="Características">Features</a>
+            <a href="#how-to" class="lang" data-en="How to Use" data-es="Cómo Usar">How to Use</a>
+            <a href="#status" class="lang" data-en="Status" data-es="Estado">Status</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-btn" id="langToggle">🌐 EN / ES</button>
+            <button class="nav-btn lang" onclick="window.open('https://discord.gg/UDJKWAgJHd', '_blank')" data-en="Join Discord" data-es="Unirse al Discord">Join Discord</button>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-content observe-me">
+            <h1 class="hero-title lang" data-en="DOMINATE THE CHAOS.<br>NO LIMITS." data-es="DOMINA EL CAOS.<br>SIN LIMITES.">DOMINATE THE CHAOS.<br>NO LIMITS.</h1>
+            <p class="hero-subtitle lang" data-en="The ultimate, professional-grade script tailored for Jujutsu Shenanigans. Highly optimized, deeply featured, and universally compatible across all major executors. Completely free & keyless." data-es="El script definitivo a nivel profesional creado para Jujutsu Shenanigans. Altamente optimizado, con funciones avanzadas y compatible con casi todos los ejecutores. 100% gratis y sin keys.">The ultimate, professional-grade script tailored for Jujutsu Shenanigans. Highly optimized, deeply featured, and universally compatible across all major executors. Completely free & keyless.</p>
+            <a href="#how-to" class="glow-btn"><span class="lang" data-en="COPY SCRIPT FREE" data-es="COPIAR SCRIPT GRATIS">COPY SCRIPT FREE</span></a>
+        </div>
+        <div class="hero-3d observe-me delay-2" id="tilt-element">
+            <img src="OMNI-HUB-PNG.png" alt="Omni Hub UI">
+        </div>
+    </section>
+
+    <section id="features">
+        <h2 class="section-title observe-me lang" data-en="CORE ARCHITECTURE" data-es="ARQUITECTURA PRINCIPAL">CORE ARCHITECTURE</h2>
+        <div class="bento-grid" id="bento-container">
+            <div class="bento-card card-large observe-me">
+                <h3 class="lang" data-en="🎹 Omni Maestro V12" data-es="🎹 Omni Maestro V12">🎹 Omni Maestro V12</h3>
+                <p class="lang" data-en="Become a virtuoso. The integrated Omni Maestro allows you to automatically play complex MIDI and sheet music flawlessly on the in-game pianos found within Jujutsu Shenanigans. Includes tempo control and a savable library." data-es="Conviértete en un virtuoso. El Omni Maestro integrado te permite tocar automáticamente partituras complejas en los pianos que se encuentran dentro del mapa de Jujutsu Shenanigans. Incluye control de tempo y biblioteca guardable.">Become a virtuoso. The integrated Omni Maestro allows you to automatically play complex MIDI and sheet music flawlessly on the in-game pianos found within Jujutsu Shenanigans. Includes tempo control and a savable library.</p>
+            </div>
+            <div class="bento-card observe-me delay-1">
+                <h3 class="lang" data-en="🛡️ Frame-Perfect Combat" data-es="🛡️ Combate Frame-Perfect">🛡️ Frame-Perfect Combat</h3>
+                <p class="lang" data-en="Our engine reads enemy animation data in real-time. Instantly execute Perfect Blocks (Parries) or Auto-Dodges based on the exact M1s and skills used by characters like Gojo, Yuji, or Hakari." data-es="Nuestro motor lee las animaciones enemigas en tiempo real. Ejecuta Bloqueos Perfectos (Parry) o Auto-Esquives instantáneos basados en los ataques exactos de personajes como Gojo, Yuji o Hakari.">Our engine reads enemy animation data in real-time. Instantly execute Perfect Blocks (Parries) or Auto-Dodges based on the exact M1s and skills used by characters like Gojo, Yuji, or Hakari.</p>
+            </div>
+            <div class="bento-card observe-me delay-2">
+                <h3 class="lang" data-en="⚡ Zero Lag Engine" data-es="⚡ Zero Lag Engine">⚡ Zero Lag Engine</h3>
+                <p class="lang" data-en="Written with extreme minification and efficient rendering loops. Designed to run flawlessly on free executors, consuming minimal CPU to prevent sudden crashes during intense fights." data-es="Escrito con minificación extrema y bucles eficientes. Diseñado para funcionar a la perfección en ejecutores gratuitos, consumiendo una CPU mínima para evitar crasheos durante las peleas intensas.">Written with extreme minification and efficient rendering loops. Designed to run flawlessly on free executors, consuming minimal CPU to prevent sudden crashes during intense fights.</p>
+            </div>
+            <div class="bento-card card-large observe-me">
+                <h3 class="lang" data-en="🌍 Universal & Keyless" data-es="🌍 Universal y Sin Llaves">🌍 Universal & Keyless</h3>
+                <p class="lang" data-en="Forget about annoying Linkvertise walls. Get instant access to a secure, undetected script that rivals premium platforms. Fully supported on Windows, Android, and MacOS executors." data-es="Olvídate de los molestos acortadores. Obtén acceso instantáneo a un script seguro e indetectable que rivaliza con las plataformas de pago. Soporte total para ejecutores de Windows, Android y MacOS.">Forget about annoying Linkvertise walls. Get instant access to a secure, undetected script that rivals premium platforms. Fully supported on Windows, Android, and MacOS executors.</p>
+            </div>
+        </div>
+
+        <div class="feature-list-container observe-me">
+            <div class="feature-column">
+                <h4 class="lang" data-en="Combat & Defense" data-es="Combate y Defensa">Combat & Defense</h4>
+                <ul>
+                    <li class="lang" data-en="Auto-Block (Predicts Character Animations)" data-es="Auto-Bloqueo (Predice Animaciones)">Auto-Block (Predicts Character Animations)</li>
+                    <li class="lang" data-en="Smart Danger Area (Visualizes attacks & Auto-Repels)" data-es="Smart Danger Area (Visualiza y Repele ataques)">Smart Danger Area (Visualizes attacks & Auto-Repels)</li>
+                    <li class="lang" data-en="Combo Breaker (Physical impulse to escape ragdolls)" data-es="Rompe Combos (Impulso físico para escapar)">Combo Breaker (Physical impulse to escape ragdolls)</li>
+                    <li class="lang" data-en="Anti-M1 & Anti-Skill (Directional Auto-Dodge)" data-es="Anti-M1 & Anti-Skill (Auto-Esquive Direccional)">Anti-M1 & Anti-Skill (Directional Auto-Dodge)</li>
+                    <li class="lang" data-en="Burst Alert (Anti-Team detection)" data-es="Alerta Burst (Detección Anti-Team)">Burst Alert (Anti-Team detection)</li>
+                </ul>
+            </div>
+            <div class="feature-column">
+                <h4 class="lang" data-en="Vision & Mobility" data-es="Visión y Movilidad">Vision & Mobility</h4>
+                <ul>
+                    <li class="lang" data-en="Custom ESP (Color-codes health and stun states)" data-es="ESP Personalizado (Colores por salud/stun)">Custom ESP (Color-codes health and stun states)</li>
+                    <li class="lang" data-en="Astral Projection (Invisible Freecam Drone)" data-es="Proyección Astral (Dron cámara libre)">Astral Projection (Invisible Freecam Drone)</li>
+                    <li class="lang" data-en="Smart TP (Bypasses Anti-Cheat via Micro-Steps)" data-es="Smart TP (Bypassea Anti-Cheat con Micro-pasos)">Smart TP (Bypasses Anti-Cheat via Micro-Steps)</li>
+                    <li class="lang" data-en="Dynamic Flight & Super Sprint" data-es="Vuelo Dinámico y Súper Sprint">Dynamic Flight & Super Sprint</li>
+                    <li class="lang" data-en="Fake Dash & Mirage Effects" data-es="Dash Falso y Efectos de Espejismo">Fake Dash & Mirage Effects</li>
+                </ul>
+            </div>
+            <div class="feature-column">
+                <h4 class="lang" data-en="Automation & Macros" data-es="Automatización y Macros">Automation & Macros</h4>
+                <ul>
+                    <li class="lang" data-en="Auto-Ulti (Ghost Farm bot hunters)" data-es="Auto-Ulti (Cazador Automático de Bots)">Auto-Ulti (Ghost Farm bot hunters)</li>
+                    <li class="lang" data-en="Combat Macros (Trigger actions on attack/damage)" data-es="Macros de Combate (Acciones al atacar/recibir daño)">Combat Macros (Trigger actions on attack/damage)</li>
+                    <li class="lang" data-en="Multi-Profile Saving System" data-es="Sistema de Guardado Multi-Perfil">Multi-Profile Saving System</li>
+                    <li class="lang" data-en="Friends/Enemies Priority Target Lists" data-es="Listas de Prioridad de Amigos/Enemigos">Friends/Enemies Priority Target Lists</li>
+                    <li class="lang" data-en="Live Player Manager" data-es="Gestor de Jugadores en Vivo">Live Player Manager</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to">
+        <h2 class="section-title observe-me lang" style="margin-bottom: 40px;" data-en="HOW TO DEPLOY" data-es="CÓMO USARLO">HOW TO DEPLOY</h2>
+        
+        <div class="steps-container observe-me delay-1">
+            <div class="step-box">
+                <div class="step-number">01</div>
+                <h4 class="lang" data-en="Get an Executor" data-es="Obtén un Ejecutor">Get an Executor</h4>
+                <p class="lang" data-en="You need a Roblox Exploit/Executor. Check our compatibility list below to find one that works for your device (PC, Android, or Mac)." data-es="Necesitas un Ejecutor de Roblox. Revisa nuestra lista de compatibilidad abajo para encontrar uno que funcione en tu dispositivo.">You need a Roblox Exploit/Executor. Check our compatibility list below to find one that works for your device (PC, Android, or Mac).</p>
+            </div>
+            <div class="step-box">
+                <div class="step-number">02</div>
+                <h4 class="lang" data-en="Copy the Script" data-es="Copia el Script">Copy the Script</h4>
+                <p class="lang" data-en="Click on the interactive terminal below to instantly copy the Omni Hub execution code (Loadstring) to your clipboard." data-es="Haz clic en la terminal interactiva de abajo para copiar instantáneamente el código de ejecución (Loadstring) a tu portapapeles.">Click on the interactive terminal below to instantly copy the Omni Hub execution code (Loadstring) to your clipboard.</p>
+            </div>
+            <div class="step-box">
+                <div class="step-number">03</div>
+                <h4 class="lang" data-en="Execute & Dominate" data-es="Ejecuta y Domina">Execute & Dominate</h4>
+                <p class="lang" data-en="Open Jujutsu Shenanigans, paste the code into your executor, and run it. Press 'M' to open the menu and configure your profiles." data-es="Abre Jujutsu Shenanigans, pega el código en tu ejecutor y córrelo. Pulsa 'M' para abrir el menú y configura tus perfiles.">Open Jujutsu Shenanigans, paste the code into your executor, and run it. Press 'M' to open the menu and configure your profiles.</p>
+            </div>
+        </div>
+
+        <div class="mac-terminal observe-me delay-2" onclick="copyScript()">
+            <div class="terminal-header">
+                <div class="mac-btn close"></div>
+                <div class="mac-btn min"></div>
+                <div class="mac-btn max"></div>
+                <span style="margin-left:10px; font-family:'Inter'; font-size: 0.8rem; color: var(--text-muted);">Omni_Hub_Terminal</span>
+            </div>
+            <div class="terminal-body">
+                <span class="syntax-func">loadstring</span><span class="syntax-punct">(</span><span class="syntax-func">game</span><span class="syntax-punct">:</span><span class="syntax-func">HttpGet</span><span class="syntax-punct">(</span><span class="syntax-str">"https://raw.githubusercontent.com/bygalactico/OmniHub/refs/heads/main/OmniHub.lua"</span><span class="syntax-punct">))()</span>
+            </div>
+        </div>
+        <p class="lang" style="text-align:center; color: var(--text-muted); margin-top: 15px; font-size: 0.9rem;" data-en="Click the terminal window to copy" data-es="Haz clic en la terminal para copiar">Click the terminal window to copy</p>
+    </section>
+
+    <section id="status">
+        <h2 class="section-title observe-me lang" data-en="COMPATIBILITY MATRIX" data-es="MATRIZ DE COMPATIBILIDAD">COMPATIBILITY MATRIX</h2>
+        <table class="status-table observe-me delay-1">
+            <tr>
+                <th class="lang" data-en="EXECUTOR" data-es="EJECUTOR">EXECUTOR</th>
+                <th class="lang" data-en="PLATFORM" data-es="PLATAFORMA">PLATFORM</th>
+                <th class="lang" data-en="STATUS" data-es="ESTADO">STATUS</th>
+            </tr>
+            <tr>
+                <td>Solara / Xeno / Celery</td>
+                <td>Windows (Free)</td>
+                <td><span class="status-dot"></span> <span class="lang" data-en="Supported" data-es="Soportado">Supported</span></td>
+            </tr>
+            <tr>
+                <td>Wave / Krampus</td>
+                <td>Windows (Premium)</td>
+                <td><span class="status-dot"></span> <span class="lang" data-en="Supported" data-es="Soportado">Supported</span></td>
+            </tr>
+            <tr>
+                <td>Delta / CodeX / Arceus X / Vegax</td>
+                <td>Android / Emulators</td>
+                <td><span class="status-dot"></span> <span class="lang" data-en="Supported" data-es="Soportado">Supported</span></td>
+            </tr>
+            <tr>
+                <td>MacSploit / Hydrogen</td>
+                <td>MacOS</td>
+                <td><span class="status-dot"></span> <span class="lang" data-en="Supported" data-es="Soportado">Supported</span></td>
+            </tr>
+        </table>
+    </section>
+
+    <div id="toast">
+        <span class="lang" data-en="✅ Loadstring copied to clipboard." data-es="✅ Comando copiado al portapapeles.">✅ Loadstring copied to clipboard.</span>
+        <div class="toast-bar" id="toast-bar"></div>
+    </div>
+
+    <footer>
+        <p>OMNI HUB V6.8 © 2024. <span class="lang" data-en="A dedicated script for Jujutsu Shenanigans. Educational purposes only." data-es="Script dedicado para Jujutsu Shenanigans. Solo para fines educativos.">A dedicated script for Jujutsu Shenanigans. Educational purposes only.</span></p>
+    </footer>
+
+    <script>
+        // 🌐 BILINGUAL SYSTEM LOGIC
+        let currentLang = 'en';
+        document.getElementById('langToggle').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            
+            // Update button text
+            document.getElementById('langToggle').innerText = currentLang === 'en' ? '🌐 EN / ES' : '🌐 ES / EN';
+            
+            // Update all elements with the 'lang' class
+            document.querySelectorAll('.lang').forEach(el => {
+                const newText = el.getAttribute('data-' + currentLang);
+                if (newText) {
+                    el.innerHTML = newText;
+                }
+            });
+        });
+
+        // FASE 1: Lógica Pre-loader Terminal (Updated & Professional)
+        const termLines = [
+            "> INITIALIZING OMNI_OS ENVIRONMENT...",
+            "> ESTABLISHING SECURE CONNECTION... [OK]",
+            "> FETCHING ANIMATION DATA MODULES... [OK]",
+            "> INJECTING CORE COMBAT SYSTEMS... [OK]",
+            "> OMNI HUB V6.8 LOADED SUCCESSFULLY."
+        ];
+        
+        async function runPreloader() {
+            const termEl = document.getElementById('term-text');
+            const logoEl = document.getElementById('pre-logo');
+            const preloader = document.getElementById('preloader');
+
+            for (let i = 0; i < termLines.length; i++) {
+                termEl.innerHTML += termLines[i] + "<br>";
+                await new Promise(r => setTimeout(r, 350)); // Typing speed
+            }
+            
+            await new Promise(r => setTimeout(r, 300));
+            termEl.style.display = 'none';
+            logoEl.style.display = 'block';
+            logoEl.style.opacity = '1';
+            
+            await new Promise(r => setTimeout(r, 1000));
+            preloader.style.transform = 'translateY(-100%)';
+            preloader.style.opacity = '0';
+            
+            setTimeout(() => { preloader.style.display = 'none'; }, 1200);
+        }
+        window.onload = runPreloader;
+
+        // FASE 4: Efecto Botón Glow
+        const glowBtn = document.querySelector('.glow-btn');
+        glowBtn.addEventListener('mousemove', e => {
+            const rect = glowBtn.getBoundingClientRect();
+            glowBtn.style.setProperty('--x', `${e.clientX - rect.left}px`);
+            glowBtn.style.setProperty('--y', `${e.clientY - rect.top}px`);
+        });
+
+        // FASE 4: 3D Tilt Elemento Hero
+        const tiltEl = document.getElementById('tilt-element');
+        window.addEventListener('mousemove', e => {
+            if(window.innerWidth > 900) { // Only animate on desktop
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+                tiltEl.style.transform = `translateY(-50%) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
+        // FASE 5: Efecto Spotlight Bento Grid
+        const bentoContainer = document.getElementById('bento-container');
+        const cards = document.querySelectorAll('.bento-card');
+        bentoContainer.addEventListener('mousemove', e => {
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+
+        // FASE 8: Intersection Observer (Animaciones al hacer scroll)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.observe-me').forEach(el => observer.observe(el));
+
+        // FASE 6: Copiar y Notificación Toast
+        function copyScript() {
+            const scriptCode = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/bygalactico/OmniHub/refs/heads/main/OmniHub.lua"))()';
+            navigator.clipboard.writeText(scriptCode).then(() => {
+                const toast = document.getElementById('toast');
+                const bar = document.getElementById('toast-bar');
+                toast.classList.add('show');
+                
+                // Animar la barra de carga
+                bar.style.transition = 'none';
+                bar.style.width = '100%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 3s linear';
+                    bar.style.width = '0%';
+                }, 10);
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
