@@ -223,78 +223,42 @@
         .observe-me.is-visible { opacity: 1; transform: translateY(0); }
 
         /* =========================================================
-           7. RÉPLICAS VISUALES LUA (ESTILO CAPTURA EXACTA)
+           7. IMÁGENES 3D CON NEÓN AMARILLO (OMNI HUB Y MAESTRO)
            ========================================================= */
-        /* Contenedor con efecto 3D */
-        .lua-replica-container { display: flex; justify-content: center; margin: 40px 0; perspective: 1200px; z-index: 10; position: relative; }
+        .tilt-container { 
+            display: flex; 
+            justify-content: center; 
+            margin: 60px 0 80px; 
+            perspective: 1200px; 
+            z-index: 10; 
+            position: relative; 
+        }
         
-        /* Ventana completa (se mueve en bloque, lo de dentro no es interactivo) */
-        .omni-hub-window { width: 880px; height: 530px; position: relative; transform: rotateX(5deg) rotateY(-5deg); box-shadow: -20px 30px 50px rgba(0,0,0,0.6); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Inter', sans-serif; user-select: none; pointer-events: none; }
-        .lua-replica-container:hover .omni-hub-window { transform: rotateX(0deg) rotateY(0deg) scale(1.02); box-shadow: 0 40px 60px rgba(255, 50, 50, 0.15); }
+        .tilt-image { 
+            width: 100%;
+            max-width: 850px; 
+            height: auto; 
+            border-radius: 12px;
+            /* Inclinación 3D inicial y Resplandor Amarillo suave */
+            transform: rotateX(5deg) rotateY(-5deg); 
+            box-shadow: -20px 30px 50px rgba(0,0,0,0.8), 0 0 25px rgba(255, 204, 0, 0.25); 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+            cursor: crosshair; 
+        }
         
-        /* --- ESTILOS OMNI HUB V6.8 (ROJO) --- */
-        .lua-header { position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: #191919; border-radius: 8px; border: 2px solid #ff3232; padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; }
-        .lua-title { color: #ff3232; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 900; margin: 0; line-height: 1.1; text-align: left; letter-spacing: 1px;}
-        .lua-subtitle { color: #c8c8c8; font-size: 11px; font-weight: 600; text-align: left; }
-        .lua-credits { color: #969696; font-size: 10px; position: absolute; left: 240px; top: 35px; }
-        
-        .lua-profiles { position: absolute; right: 15px; top: 10px; width: 280px; height: 35px; background: #0f0f0f; border-radius: 5px; display: flex; align-items: center; padding: 0 5px; gap: 5px; border: 1px solid #282828;}
-        .lua-prof-input { background: transparent; border: none; color: white; font-weight: bold; font-size: 12px; width: 100px; padding-left: 5px;}
-        .lua-prof-drop { background: #1e1e1e; color: #ff3232; border: none; border-radius: 4px; padding: 4px 8px; font-size: 10px; }
-        .lua-prof-save { background: #3296ff; color: white; border: none; border-radius: 4px; padding: 6px 10px; font-weight: bold; font-size: 11px; flex-grow: 1; text-align: center;}
+        /* Al pasar el ratón: se endereza, crece un poco y el neón amarillo brilla fuerte */
+        .tilt-container:hover .tilt-image { 
+            transform: rotateX(0deg) rotateY(0deg) scale(1.02); 
+            box-shadow: 0 40px 60px rgba(0,0,0,0.9), 0 0 60px rgba(255, 204, 0, 0.6); 
+        }
 
-        .lua-main { position: absolute; top: 70px; left: 0; width: 550px; height: 460px; background: #191919; border-radius: 8px; border: 2px solid rgba(255, 50, 50, 0.3); display: flex; flex-direction: column; padding: 10px; }
-        .lua-btn-chars { background: #ff3232; color: white; font-weight: bold; font-size: 13px; padding: 10px; text-align: center; border-radius: 5px; margin-bottom: 10px; letter-spacing: 1px;}
-        .lua-scroll { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; }
-        
-        .lua-category { color: #ff3232; font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-size: 14px; margin: 10px 0 2px 5px; text-align: left; text-transform: uppercase;}
-        .lua-toggle-row { background: #282828; border-radius: 5px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; }
-        .lua-toggle-name { color: white; font-weight: 600; font-size: 12px; display: flex; align-items: center;}
-        .lua-toggle-controls { display: flex; gap: 6px; align-items: center; }
-        .lua-key-btn { background: #3c3c3c; color: white; padding: 5px 12px; border-radius: 5px; font-size: 11px; min-width: 40px; text-align: center; font-family: 'Fira Code', monospace;}
-        .lua-onoff-btn { background: #c83232; color: white; padding: 5px 15px; border-radius: 5px; font-size: 11px; font-weight: bold; min-width: 55px; text-align: center; }
-        .lua-onoff-btn.active { background: #32c832; }
-        .lua-mini-lbl { color: #aaa; font-size: 10px; margin-left: 10px; margin-right: 5px;}
-        .lua-mini-box { background: #0f0f0f; color: #ff3232; border: 1px solid #333; border-radius: 4px; padding: 3px 6px; font-size: 11px; width: 45px; text-align: center; font-weight: bold;}
-
-        .lua-side { position: absolute; top: 70px; right: 0; width: 320px; height: 460px; background: #191919; border-radius: 8px; border: 2px solid rgba(255, 50, 50, 0.3); padding: 10px; display: flex; flex-direction: column; gap: 10px; }
-        .lua-side-title { color: #ff3232; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 900; border-bottom: 1px solid rgba(255, 50, 50, 0.4); padding-bottom: 8px; text-align: left; }
-        .lua-side-scroll { flex-grow: 1; display: flex; flex-direction: column; gap: 10px;}
-        .lua-side-box { background: #1e1e1e; border-radius: 5px; padding: 10px; border: 1px solid #2a2a2a;}
-        .lua-side-box-title { font-weight: bold; font-size: 12px; margin-bottom: 8px; text-align: left; color: #e5e7eb;}
-        .lua-player-row { background: #282828; padding: 6px 8px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-        .lua-player-name { color: white; font-size: 11px; font-weight: 500;}
-        .lua-tp-btn { background: #ffaa00; color: white; font-size: 10px; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
-        .lua-del-btn { background: #ff3232; color: white; font-size: 10px; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
-        .lua-ene-btn { background: #ff3232; color: white; font-size: 11px; padding: 8px; border-radius: 4px; font-weight: bold; text-align: center;}
-        .lua-add-btn { background: #3296ff; color: white; font-size: 11px; padding: 8px; border-radius: 4px; font-weight: bold; text-align: center;}
-        
-        .lua-maestro-btn { background: #282828; color: white; font-weight: bold; font-size: 12px; padding: 10px; text-align: center; border-radius: 5px; border: 1px solid #3c3c3c;}
-        .lua-bottom-bar { display: flex; gap: 8px; height: 38px;}
-        .lua-gear { background: #282828; color: white; border: 1px solid #3c3c3c; border-radius: 5px; width: 40px; font-size: 16px; display: flex; align-items: center; justify-content: center;}
-        .lua-unload { background: #ff3232; color: white; border: none; border-radius: 5px; flex-grow: 1; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; letter-spacing: 0.5px;}
-        
-        /* --- ESTILOS OMNI MAESTRO (CALCADO DE LA CAPTURA) --- */
-        .maestro-wrapper { display: flex; width: 100%; height: 100%; min-height: 400px; pointer-events: none; user-select: none;}
-        .maestro-replica { width: 100%; height: 100%; display: flex; flex-direction: column; background: #191919; border-radius: 8px; border: 1px solid #333; overflow: hidden; font-family: 'Inter', sans-serif; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
-        .maestro-top { height: 45px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; background: #141414; border-bottom: 1px solid #2a2a2a;}
-        .maestro-title { color: #ffaa00; font-family: 'Space Grotesk', sans-serif; font-weight: bold; font-size: 14px; letter-spacing: 1px;}
-        .maestro-actions { display: flex; gap: 8px; }
-        .maestro-min { background: #3296ff; color: white; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px;}
-        .maestro-close { background: #ff3232; color: white; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;}
-        .maestro-content { padding: 15px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
-        .maestro-toolbar { display: flex; gap: 8px; align-items: center; }
-        .maestro-label { color: #c8c8c8; font-weight: 600; font-size: 11px; }
-        .maestro-input { background: #282828; color: #32c832; border: 1px solid #3c3c3c; padding: 5px 10px; border-radius: 4px; width: 50px; font-weight: bold; text-align: center; font-size: 12px; }
-        .maestro-key { background: #9664c8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 12px; font-family: 'Fira Code', monospace;}
-        .maestro-clear { background: #ff3232; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-left: auto;}
-        .maestro-btn-row { display: flex; gap: 8px; }
-        .maestro-lib { background: #3296ff; color: white; padding: 10px; border-radius: 4px; font-weight: bold; font-size: 12px; flex: 1; text-align: center; }
-        .maestro-save { background: #32c832; color: white; padding: 10px; border-radius: 4px; font-weight: bold; font-size: 12px; flex: 1; text-align: center; }
-        .maestro-sheet-area { background: #141414; border: 1px solid #333; border-radius: 6px; flex-grow: 1; padding: 12px; color: #32c832; font-family: 'Fira Code', monospace; font-size: 12px; text-align: left; line-height: 1.6;}
-        .maestro-sheet-area span { color: #ff3232; font-weight: bold; text-decoration: underline; }
-        .maestro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .maestro-play-btn { padding: 12px; border-radius: 5px; color: white; font-weight: bold; font-size: 12px; text-align: center; }
+        /* Ajuste específico para que la imagen del Maestro encaje al lado del vídeo */
+        .maestro-tilt {
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -383,134 +347,111 @@
 
         <div class="section-header observe-me" style="margin-top: 100px;">
             <h2 class="section-title lang" data-en="FULL <span>ARSENAL</span>" data-es="ARSENAL <span>COMPLETO</span>">FULL <span>ARSENAL</span></h2>
-            <p class="section-subtitle lang" data-en="Explore the detailed features based strictly on the Omni Hub V6.8 Lua script." data-es="Explora las funciones detalladas basadas estrictamente en el script Lua Omni Hub V6.8.">Explore the detailed features based strictly on the Omni Hub V6.8 Lua script.</p>
+            <p class="section-subtitle lang" data-en="Explore the detailed, professional-grade features injected directly into the Omni Hub engine." data-es="Explora las características detalladas de nivel profesional inyectadas directamente en el motor de Omni Hub.">Explore the detailed, professional-grade features injected directly into the Omni Hub engine.</p>
         </div>
 
-        <div class="features-container observe-me" style="margin-bottom: 60px;">
+        <div class="tilt-container observe-me">
+            <img src="assets/img/hud-omnihub.png" alt="Omni Hub V6.8 Interface" class="tilt-image">
+        </div>
+
+        <div class="features-container observe-me" style="margin-bottom: 60px; align-items: start;">
+            
             <div class="feature-category">
-                <h3 class="lang" data-en="⚔️ Combat Engine" data-es="⚔️ Motor de Combate">⚔️ Combat Engine</h3>
+                <h3 class="lang" data-en="🛡️ Defense & Protection" data-es="🛡️ Defensa y Protección">🛡️ Defense & Protection</h3>
                 <ul class="feature-list">
                     <li>
-                        <h4 class="lang" data-en="Predictive Auto-Block" data-es="Auto-Block Predictivo">Predictive Auto-Block</h4>
-                        <p class="lang" data-en="Reads exact animation frames to trigger instantaneous blocks." data-es="Lee frames exactos de animación para bloquear al instante.">Reads exact animation frames to trigger instantaneous blocks.</p>
+                        <h4 class="lang" data-en="Safe Area" data-es="Safe Area">Safe Area</h4>
+                        <p class="lang" data-en="Creates a secure green perimeter that alerts you of nearby threats." data-es="Crea un perímetro verde seguro que te alerta de amenazas cercanas.">Creates a secure green perimeter that alerts you of nearby threats.</p>
                     </li>
                     <li>
-                        <h4 class="lang" data-en="Auto-Ulti (Dummy Farm)" data-es="Auto-Ulti (Farmeo en Dummys)">Auto-Ulti (Dummy Farm)</h4>
-                        <p class="lang" data-en="Automatically targets the map's dummy bot to safely farm your ultimate gauge without targeting real players." data-es="Apunta automáticamente al dummy/bot del mapa para farmear tu barra de ultimate de forma segura sin atacar a jugadores reales.">Automatically targets the map's dummy bot to safely farm your ultimate gauge without targeting real players.</p>
+                        <h4 class="lang" data-en="Auto-Dodge (Repel)" data-es="Auto-Dodge (Repeler)">Auto-Dodge (Repel)</h4>
+                        <p class="lang" data-en="Automatically dodges or repels attacks the moment an enemy enters your Danger Area." data-es="Esquiva o repele automáticamente los ataques en cuanto un enemigo entra en tu Danger Area.">Automatically dodges or repels attacks the moment an enemy enters your Danger Area.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Anti-Void" data-es="Anti-Void">Anti-Void</h4>
+                        <p class="lang" data-en="Prevents falling out of the map by automatically teleporting you back to a safe zone." data-es="Evita caer fuera del mapa teletransportándote automáticamente a una zona segura.">Prevents falling out of the map by automatically teleporting you back to a safe zone.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Anti-M1" data-es="Anti-M1">Anti-M1</h4>
+                        <p class="lang" data-en="Automatically blocks or evades incoming basic M1 melee attacks." data-es="Bloquea o evade automáticamente los ataques básicos (M1) cuerpo a cuerpo.">Automatically blocks or evades incoming basic M1 melee attacks.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Anti-Skill" data-es="Anti-Skill">Anti-Skill</h4>
+                        <p class="lang" data-en="Instantly evades or interrupts enemy special abilities and skills." data-es="Evade o interrumpe instantáneamente las habilidades especiales enemigas.">Instantly evades or interrupts enemy special abilities and skills.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Anti-Stun" data-es="Anti-Stun">Anti-Stun</h4>
+                        <p class="lang" data-en="Instantly frees you from any stun or ragdoll effects to keep you moving." data-es="Te libera instantáneamente de cualquier efecto de aturdimiento para mantenerte en movimiento.">Instantly frees you from any stun or ragdoll effects to keep you moving.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Perfect Block" data-es="Perfect Block">Perfect Block</h4>
+                        <p class="lang" data-en="Executes flawless frame-perfect auto-blocks against enemy M1s and dashes." data-es="Ejecuta auto-bloqueos perfectos (frame-perfect) contra M1s y dashes enemigos.">Executes flawless frame-perfect auto-blocks against enemy M1s and dashes.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Combo Breaker" data-es="Combo Breaker">Combo Breaker</h4>
+                        <p class="lang" data-en="Alters hit physics so any strike pushes you further away, preventing enemies from chaining long combos." data-es="Altera las físicas para que cualquier golpe te empuje más lejos, impidiendo que te encadenen combos.">Alters hit physics so any strike pushes you further away, preventing enemies from chaining long combos.</p>
                     </li>
                 </ul>
             </div>
 
             <div class="feature-category">
-                <h3 class="lang" data-en="👁️ Visuals & Radars" data-es="👁️ Visuales y Radares">👁️ Visuals & Radars</h3>
+                <h3 class="lang" data-en="👁️ Vision & Movement" data-es="👁️ Visión y Movimiento">👁️ Vision & Movement</h3>
                 <ul class="feature-list">
                     <li>
-                        <h4 class="lang" data-en="Danger Area & Safe Perimeter" data-es="Danger Area y Perímetro Seguro">Danger Area & Safe Perimeter</h4>
-                        <p class="lang" data-en="Displays dynamic red circles for enemy attack ranges and a green defensive boundary." data-es="Muestra círculos rojos dinámicos para los rangos de ataque enemigos y un límite defensivo verde.">Displays dynamic red circles for enemy attack ranges and a green defensive boundary.</p>
+                        <h4 class="lang" data-en="Danger Area" data-es="Danger Area">Danger Area</h4>
+                        <p class="lang" data-en="Visualizes dynamic red circles indicating the exact attack range of your enemies." data-es="Muestra círculos rojos dinámicos indicando el rango de ataque exacto de tus enemigos.">Visualizes dynamic red circles indicating the exact attack range of your enemies.</p>
                     </li>
                     <li>
-                        <h4 class="lang" data-en="Target Matrix" data-es="Matriz de Objetivos">Target Matrix</h4>
-                        <p class="lang" data-en="Maintain distinct lists for Priority Enemies and Ignored Friends to optimize your combat focus." data-es="Mantiene listas separadas para Enemigos Prioritarios y Amigos Ignorados para optimizar tu enfoque en combate.">Maintain distinct lists for Priority Enemies and Ignored Friends to optimize your combat focus.</p>
+                        <h4 class="lang" data-en="ESP" data-es="ESP">ESP</h4>
+                        <p class="lang" data-en="See players, their health, and distance clearly through walls and obstacles." data-es="Ve a los jugadores, su salud y distancia claramente a través de las paredes y obstáculos.">See players, their health, and distance clearly through walls and obstacles.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Astral Projection" data-es="Proyección Astral">Astral Projection</h4>
+                        <p class="lang" data-en="Freecam feature to scout the map invisibly while your physical body stays safe." data-es="Cámara libre para explorar el mapa de forma invisible mientras tu cuerpo físico permanece a salvo.">Freecam feature to scout the map invisibly while your physical body stays safe.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Super Sprint" data-es="Super Sprint">Super Sprint</h4>
+                        <p class="lang" data-en="Move at extreme speeds across the map, bypassing the game's engine limits." data-es="Muévete a velocidades extremas por el mapa, superando los límites del motor del juego.">Move at extreme speeds across the map, bypassing the game's engine limits.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Fly" data-es="Vuelo (Fly)">Fly</h4>
+                        <p class="lang" data-en="Take absolute control of the Z-axis and fly freely around the map." data-es="Toma el control absoluto del eje Z y vuela libremente por todo el mapa.">Take absolute control of the Z-axis and fly freely around the map.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Flash Step" data-es="Flash Step">Flash Step</h4>
+                        <p class="lang" data-en="Instant short-range teleportation to quickly close gaps or escape danger." data-es="Teletransporte instantáneo de corto alcance para acercarte rápidamente o escapar del peligro.">Instant short-range teleportation to quickly close gaps or escape danger.</p>
                     </li>
                 </ul>
             </div>
             
             <div class="feature-category">
-                <h3 class="lang" data-en="🏃 Movement Engine" data-es="🏃 Motor de Movimiento">🏃 Movement Engine</h3>
+                <h3 class="lang" data-en="⚡ Quick Abilities" data-es="⚡ Habilidades Rápidas">⚡ Quick Abilities</h3>
                 <ul class="feature-list">
                     <li>
-                        <h4 class="lang" data-en="Advanced Traversal" data-es="Movimiento Avanzado">Advanced Traversal</h4>
-                        <p class="lang" data-en="Bypass engine limits with Super Sprint and Dynamic Flight. Includes direct Teleportation to specific players." data-es="Evade los límites del motor con Super Sprint y Vuelo Dinámico. Incluye Teletransporte directo a jugadores específicos.">Bypass engine limits with Super Sprint and Dynamic Flight. Includes direct Teleportation to specific players.</p>
+                        <h4 class="lang" data-en="Auto Aim" data-es="Auto Aim">Auto Aim</h4>
+                        <p class="lang" data-en="Locks your attacks precisely onto enemies so you never miss a hit." data-es="Fija tus ataques de forma precisa en los enemigos para no fallar nunca un golpe.">Locks your attacks precisely onto enemies so you never miss a hit.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Fake Dash" data-es="Fake Dash">Fake Dash</h4>
+                        <p class="lang" data-en="Executes a deceptive dash animation to bait out enemy attacks and abilities." data-es="Ejecuta una animación de dash engañosa para baitear los ataques y habilidades enemigas.">Executes a deceptive dash animation to bait out enemy attacks and abilities.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Mirage" data-es="Mirage">Mirage</h4>
+                        <p class="lang" data-en="Creates visual clones or afterimages of your character to confuse opponents." data-es="Crea clones visuales o imágenes residuales de tu personaje para confundir a los oponentes.">Creates visual clones or afterimages of your character to confuse opponents.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Domain Injection" data-es="Inyección de Dominio">Domain Injection</h4>
+                        <p class="lang" data-en="Instantly manipulates or injects domain expansions in your favor." data-es="Manipula o inyecta instantáneamente expansiones de dominio a tu favor.">Instantly manipulates or injects domain expansions in your favor.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Auto-Ulti" data-es="Auto-Ulti">Auto-Ulti</h4>
+                        <p class="lang" data-en="Automatically farms your ultimate gauge by passively attacking the map's dummy bot." data-es="Farmea automáticamente tu barra de ultimate atacando pasivamente al bot (dummy) del mapa.">Automatically farms your ultimate gauge by passively attacking the map's dummy bot.</p>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <div class="lua-replica-container observe-me">
-            <div class="omni-hub-window">
-                <div class="lua-header">
-                    <h1 class="lua-title">OMNI HUB</h1>
-                    <span class="lua-subtitle">V6.8 | JUJUTSU SHENANIGANS</span>
-                    <span class="lua-credits">by bygalactico & Pere467</span>
-                    <div class="lua-profiles">
-                        <input type="text" class="lua-prof-input" value="Perfil 1" readonly>
-                        <span class="lua-prof-drop">▼</span>
-                        <div class="lua-prof-save">💾 GUARDAR</div>
-                    </div>
-                </div>
-                <div class="lua-main">
-                    <div class="lua-btn-chars">🔥 MOSTRAR ESP Y RANGOS (TODOS) 🔥</div>
-                    <div class="lua-scroll">
-                        <div class="lua-category">⚔️ COMBATE</div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Auto-Block Predictivo <span class="lua-mini-lbl">Ms:</span><span class="lua-mini-box">10</span></span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-key-btn">R</span>
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Auto-Ulti (AFK Farm)</span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-key-btn">F</span>
-                                <span class="lua-onoff-btn">OFF</span>
-                            </div>
-                        </div>
-
-                        <div class="lua-category">👁️ VISUALES & RADARES</div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Danger Area (Rangos)</span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Safe Area Perimeter <span class="lua-mini-lbl">Dist:</span><span class="lua-mini-box">15</span></span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
-
-                        <div class="lua-category">🏃 MOVIMIENTO</div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Super Sprint <span class="lua-mini-lbl">Vel:</span><span class="lua-mini-box">120</span></span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-key-btn">X</span>
-                                <span class="lua-onoff-btn">OFF</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lua-side">
-                    <div class="lua-side-title">🌍 JUGADORES Y LISTAS</div>
-                    <div class="lua-side-scroll">
-                        <div class="lua-side-box">
-                            <div class="lua-side-box-title">🎯 Enemigos (Prioridad)</div>
-                            <div class="lua-player-row">
-                                <span class="lua-player-name">ToxicSlayer99</span>
-                                <div><span class="lua-tp-btn">TP</span> <span class="lua-del-btn">DEL</span></div>
-                            </div>
-                            <div class="lua-ene-btn">+ AÑADIR ENEMIGO</div>
-                        </div>
-                        <div class="lua-side-box">
-                            <div class="lua-side-box-title">🛡️ Amigos (Ignorados)</div>
-                            <div class="lua-player-row">
-                                <span class="lua-player-name">MyBro2024</span>
-                                <div><span class="lua-tp-btn">TP</span> <span class="lua-del-btn">DEL</span></div>
-                            </div>
-                            <div class="lua-add-btn">+ AÑADIR AMIGO</div>
-                        </div>
-                    </div>
-                    <div class="lua-maestro-btn">🎹 ABRIR OMNI MAESTRO V12</div>
-                    <div class="lua-bottom-bar">
-                        <div class="lua-gear">⚙️</div>
-                        <div class="lua-unload">🛑 CERRAR OMNI HUB</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="bento-grid observe-me" style="grid-template-columns: repeat(2, 1fr); grid-auto-rows: 400px; max-width: 1000px; margin-top: 60px;">
+        <div class="bento-grid observe-me" style="grid-template-columns: repeat(2, 1fr); grid-auto-rows: 400px; max-width: 1000px; margin: 0 auto 100px;">
             <div class="bento-card">
                 <img src="assets/img/safe-area.png" alt="Safe Area" class="bento-bg">
                 <div class="bento-content">
@@ -523,7 +464,7 @@
                 <img src="assets/img/danger-area.png" alt="Danger Area" class="bento-bg">
                 <div class="bento-content">
                     <h3 class="lang" data-en="⚠️ Danger Area Radar" data-es="⚠️ Radar de Peligro">⚠️ Danger Area Radar</h3>
-                    <p class="lang" data-en="Real-time rendering of enemy attack ranges." data-es="Renderizado en tiempo real de los rangos de ataque enemigos.">Real-time rendering of enemy attack ranges.</p>
+                    <p class="lang" data-en="Real-time rendering of enemy attack ranges on your screen." data-es="Renderizado en tiempo real de los rangos de ataque enemigos en tu pantalla.">Real-time rendering of enemy attack ranges on your screen.</p>
                 </div>
             </div>
 
@@ -531,7 +472,7 @@
                 <img src="assets/img/sprint.png" alt="Super Sprint" class="bento-bg">
                 <div class="bento-content">
                     <h3 class="lang" data-en="⚡ Super Sprint" data-es="⚡ Súper Velocidad">⚡ Super Sprint</h3>
-                    <p class="lang" data-en="Move at high speeds across the map." data-es="Muévete a altas velocidades por el mapa.">Move at high speeds across the map.</p>
+                    <p class="lang" data-en="Move at high speeds across the map undetected." data-es="Muévete a altas velocidades por el mapa sin ser detectado.">Move at high speeds across the map undetected.</p>
                 </div>
             </div>
 
@@ -539,54 +480,23 @@
                 <img src="assets/img/fly.png" alt="Dynamic Flight" class="bento-bg">
                 <div class="bento-content">
                     <h3 class="lang" data-en="🌪️ Dynamic Flight" data-es="🌪️ Vuelo Dinámico">🌪️ Dynamic Flight</h3>
-                    <p class="lang" data-en="Take control of the Z-axis with smooth flight." data-es="Toma el control del eje Z con vuelo suave.">Take control of the Z-axis with smooth flight.</p>
+                    <p class="lang" data-en="Take control of the Z-axis with smooth flight physics." data-es="Toma el control del eje Z con físicas de vuelo suaves.">Take control of the Z-axis with smooth flight physics.</p>
                 </div>
             </div>
         </div>
 
-        <div class="section-header observe-me" style="margin-top: 100px;">
+        <div class="section-header observe-me">
             <h2 class="section-title lang" data-en="OMNI <span>MAESTRO V12</span>" data-es="OMNI <span>MAESTRO V12</span>">OMNI <span>MAESTRO V12</span></h2>
             <p class="section-subtitle lang" data-en="Flawless auto-piano integration. Play complex MIDI sheets perfectly without interrupting your gameplay." data-es="Integración perfecta de auto-piano. Toca partituras MIDI complejas sin interrumpir tu juego.">Flawless auto-piano integration. Play complex MIDI sheets perfectly without interrupting your gameplay.</p>
         </div>
 
-        <div class="bento-grid observe-me" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); grid-auto-rows: 350px; gap: 30px;">
+        <div class="bento-grid observe-me" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); grid-auto-rows: 400px; gap: 30px; max-width: 1200px; margin: 0 auto 80px;">
             <div class="bento-card" style="padding:0; border: 2px solid var(--accent-green); overflow:hidden;">
                 <iframe style="width:100%; height:100%; border:none;" src="https://www.youtube.com/embed/tSduuJZFGuo?autoplay=1&mute=1&loop=1&playlist=tSduuJZFGuo" allowfullscreen></iframe>
             </div>
             
-            <div class="maestro-wrapper">
-                <div class="maestro-replica">
-                    <div class="maestro-top">
-                        <span class="maestro-title">🎹 OMNI MAESTRO V12</span>
-                        <div class="maestro-actions">
-                            <div class="maestro-min">-</div>
-                            <div class="maestro-close">x</div>
-                        </div>
-                    </div>
-                    <div class="maestro-content">
-                        <div class="maestro-toolbar">
-                            <span class="maestro-label lang" data-en="VELOCITY:" data-es="VELOCIDAD:">VELOCITY:</span>
-                            <span class="maestro-input">0.05</span>
-                            <span class="maestro-label lang" data-en="| STOP KEY:" data-es="| TECLA STOP:">| STOP KEY:</span>
-                            <span class="maestro-key">K</span>
-                            <div class="maestro-clear lang" data-en="STOP" data-es="DETENER">STOP</div>
-                        </div>
-                        <div class="maestro-btn-row">
-                            <div class="maestro-lib lang" data-en="MIDI LIBRARY" data-es="LIBRERÍA MIDI">MIDI LIBRARY</div>
-                            <div class="maestro-save lang" data-en="SAVE SHEET" data-es="GUARDAR">SAVE SHEET</div>
-                        </div>
-                        <div class="maestro-sheet-area">
-                            [T G] [Y H] [U J] <span>[I K]</span> [O L] <br><br>
-                            > Sheet Loaded: Golden Wind...<br>
-                            > Auto-Playing keys...<br>
-                            > Syncing with server...
-                        </div>
-                        <div class="maestro-grid">
-                            <div class="maestro-play-btn lang" style="background: #32c832;" data-en="▶️ AUTO-PLAY" data-es="▶️ AUTO-PLAY">▶️ AUTO-PLAY</div>
-                            <div class="maestro-play-btn lang" style="background: #c89632;" data-en="⏸️ PAUSE" data-es="⏸️ PAUSAR">⏸️ PAUSE</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="tilt-container" style="margin: 0; height: 100%;">
+                <img src="assets/img/hud-omnimaestro.png" alt="Omni Maestro V12 Interface" class="tilt-image maestro-tilt">
             </div>
         </div>
     </section>
