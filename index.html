@@ -82,7 +82,9 @@
         @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Se quita "fixed" para que no se buguee en otras pestañas */
-        #home { background: linear-gradient(rgba(8, 8, 10, 0.5), rgba(8, 8, 10, 1)), url('assets/img/jjs-background.webp') center 15% / cover no-repeat fixed; margin-top: -100px; padding: 0 5%; text-align: center; }
+       #home { background: linear-gradient(rgba(8, 8, 10, 0.5), rgba(8, 8, 10, 1)), url('assets/img/jjs-background.webp') center 15% / cover no-repeat; margin-top: -100px; padding: 0 5%; text-align: center; }
+        #home.active-section { display: flex; align-items: center; justify-content: center; }
+        .home-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; width: 100%; margin-top: 20px;}
         
         .hero-logo { width: 280px; margin-bottom: 15px; filter: drop-shadow(0 0 20px var(--accent-glow)); animation: float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -119,13 +121,16 @@
         .section-title { font-size: 2.8rem; color: #fff; text-transform: uppercase; }
         .section-title span { color: var(--accent-green); text-shadow: 0 0 10px var(--accent-glow); }
         .section-subtitle { color: var(--text-muted); max-width: 600px; margin: 15px auto 0; font-size: 1rem; line-height: 1.6; }
-        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; grid-auto-rows: 250px; max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
-        .bento-card { background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 12px; padding: 25px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; transition: border-color 0.3s; }
+        /* Tarjetas más altas (350px en lugar de 250px) */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; grid-auto-rows: 350px; max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
+        .bento-card { background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 12px; padding: 30px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; transition: border-color 0.3s; }
         .bento-card:hover { border-color: var(--glass-border-hover); }
         .bento-card.large { grid-column: span 2; grid-row: span 2; }
-        .bento-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.4; transition: opacity 0.4s; }
-        .bento-card:hover .bento-bg { opacity: 0.7; }
-        .bento-content { position: relative; z-index: 1; background: linear-gradient(to top, rgba(8,8,10,1) 10%, transparent); padding: 25px; margin: -25px; }
+        /* Imagen con más opacidad por defecto para que se vea mejor */
+        .bento-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.6; transition: opacity 0.4s; }
+        .bento-card:hover .bento-bg { opacity: 0.9; }
+        /* Degradado más suave que no tapa la imagen de arriba */
+        .bento-content { position: relative; z-index: 1; background: linear-gradient(to top, rgba(8,8,10,1) 40%, transparent); padding: 30px; margin: -30px; }
         .bento-card h3 { color: var(--text-main); font-size: 1.3rem; margin-bottom: 8px; }
         .bento-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
         .video-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 0; }
@@ -467,7 +472,29 @@
             <h2 class="section-title lang" data-en="HOW TO <span>DEPLOY</span>" data-es="CÓMO <span>INSTALAR</span>">HOW TO <span>DEPLOY</span></h2>
             <p class="section-subtitle lang" data-en="Follow these exact steps to inject Omni Hub into your client securely." data-es="Sigue estos pasos exactos para inyectar Omni Hub en tu cliente de forma segura.">Follow these exact steps to inject Omni Hub into your client securely.</p>
         </div>
-
+<div class="install-steps observe-me" style="max-width: 850px; margin: 0 auto 40px; text-align: left; background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 12px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            
+            <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border);">
+                <h3 style="color: #fff; margin-bottom: 8px; font-family: 'Space Grotesk'; font-size: 1.2rem;"><span style="color: var(--accent-green);">1.</span> <span class="lang" data-en="Get an Executor" data-es="Consigue un Ejecutor">Get an Executor</span></h3>
+                <p class="lang" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;" data-en="Download a compatible Roblox executor (like Solara, Wave, or Delta) from their official sources and install it on your device." data-es="Descarga un ejecutor de Roblox compatible (como Solara, Wave o Delta) desde sus sitios oficiales e instálalo en tu dispositivo.">Download a compatible Roblox executor (like Solara, Wave, or Delta) from their official sources and install it on your device.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border);">
+                <h3 style="color: #fff; margin-bottom: 8px; font-family: 'Space Grotesk'; font-size: 1.2rem;"><span style="color: var(--accent-green);">2.</span> <span class="lang" data-en="Launch the Game" data-es="Inicia el Juego">Launch the Game</span></h3>
+                <p class="lang" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;" data-en="Open Roblox and enter Jujutsu Shenanigans. Wait for your character to fully load into the map." data-es="Abre Roblox y entra a Jujutsu Shenanigans. Espera a que tu personaje cargue por completo en el mapa.">Open Roblox and enter Jujutsu Shenanigans. Wait for your character to fully load into the map.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border);">
+                <h3 style="color: #fff; margin-bottom: 8px; font-family: 'Space Grotesk'; font-size: 1.2rem;"><span style="color: var(--accent-green);">3.</span> <span class="lang" data-en="Attach & Inject" data-es="Inyecta el Ejecutor">Attach & Inject</span></h3>
+                <p class="lang" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;" data-en="Open your executor and click the 'Attach' or 'Inject' button to link it to the Roblox client." data-es="Abre tu ejecutor y haz clic en el botón de 'Attach' o 'Inyectar' para vincularlo al cliente de Roblox.">Open your executor and click the 'Attach' or 'Inject' button to link it to the Roblox client.</p>
+            </div>
+            
+            <div>
+                <h3 style="color: #fff; margin-bottom: 8px; font-family: 'Space Grotesk'; font-size: 1.2rem;"><span style="color: var(--accent-green);">4.</span> <span class="lang" data-en="Execute Omni Hub" data-es="Ejecuta Omni Hub">Execute Omni Hub</span></h3>
+                <p class="lang" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;" data-en="Click the terminal below to copy the script. Paste it into your executor and press 'Execute'. The menu will appear instantly!" data-es="Haz clic en la terminal de abajo para copiar el script. Pégalo en tu ejecutor y presiona 'Ejecutar'. ¡El menú aparecerá al instante!">Click the terminal below to copy the script. Paste it into your executor and press 'Execute'. The menu will appear instantly!</p>
+            </div>
+            
+        </div>
         <div class="mac-terminal observe-me" onclick="copyScript()">
             <div class="terminal-header">
                 <div class="mac-btn close-btn"></div>
@@ -551,7 +578,7 @@
 
         <div class="leaderboard-container observe-me">
             <div class="leaderboard">
-                <h3 style="color: #fff;"><img src="assets/img/Robux.png" style="width: 20px; vertical-align: middle; margin-right: 5px;"> TOP SUPPORTERS</h3>
+                <h3 style="color: #fff;"><img src="assets/img/Roblox_Corporation_2025_logo.svg.png" style="height: 25px; object-fit: contain; vertical-align: middle; margin-right: 8px;"> ROBLOX SUPPORTERS</h3>
                 <div class="donator-item top-1">
                     <span class="donator-rank" style="color:#ffd700;">#1</span>
                     <span class="donator-name">@marc04731</span>
@@ -580,7 +607,7 @@
             </div>
 
             <div class="leaderboard">
-                <h3 style="color: #fff;"><img src="assets/img/paypal-logo-transparent-png.png" style="height: 25px; object-fit: contain; vertical-align: middle; margin-right: 8px; filter: brightness(0) invert(1);"> SUPPORTERS</h3>
+                <h3 style="color: #fff;"><img src="assets/img/paypal-logo-transparent-png.png" style="height: 25px; object-fit: contain; vertical-align: middle; margin-right: 8px;"> PAYPAL SUPPORTERS</h3>
                 <div class="donator-item top-1">
                     <span class="donator-rank" style="color:#ffd700;">#1</span>
                     <span class="donator-name">@manelxd</span>
@@ -637,8 +664,8 @@
 
         <div class="donate-grid observe-me">
             <div class="donate-card">
-                <h4 class="tier-title">[Omnihub] Small Tip</h4>
-                <p class="tier-desc">A small donation to support Omnihub development. Thank you!</p>
+                <h4 class="tier-title lang" data-en="[Omnihub] Small Tip" data-es="[Omnihub] Pequeña Propina">[Omnihub] Small Tip</h4>
+                <p class="tier-desc lang" data-en="A small donation to support Omnihub development. Thank you!" data-es="Una pequeña donación para apoyar el desarrollo. ¡Gracias!">A small donation to support Omnihub development. Thank you!</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">10</span>
@@ -646,8 +673,8 @@
                 <a href="https://www.roblox.com/game-pass/1782948132" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card">
-                <h4 class="tier-title">[Omnihub] Snack Support</h4>
-                <p class="tier-desc">Every bit helps us keep the script updated for everyone.</p>
+                <h4 class="tier-title lang" data-en="[Omnihub] Snack Support" data-es="[Omnihub] Apoyo Snack">[Omnihub] Snack Support</h4>
+                <p class="tier-desc lang" data-en="Every bit helps us keep the script updated for everyone." data-es="Cada ayuda nos permite mantener el script actualizado.">Every bit helps us keep the script updated for everyone.</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">20</span>
@@ -655,8 +682,8 @@
                 <a href="https://www.roblox.com/game-pass/1780801170" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card">
-                <h4 class="tier-title">[Omnihub] Developer Coffee</h4>
-                <p class="tier-desc">Fuel the developer with a coffee! Your kindness is appreciated.</p>
+                <h4 class="tier-title lang" data-en="[Omnihub] Developer Coffee" data-es="[Omnihub] Café para el Dev">[Omnihub] Developer Coffee</h4>
+                <p class="tier-desc lang" data-en="Fuel the developer with a coffee! Your kindness is appreciated." data-es="¡Invítale un café al desarrollador! Se agradece tu amabilidad.">Fuel the developer with a coffee! Your kindness is appreciated.</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">50</span>
@@ -664,8 +691,8 @@
                 <a href="https://www.roblox.com/game-pass/1781281135" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card">
-                <h4 class="tier-title">[Omnihub] Official Supporter</h4>
-                <p class="tier-desc">Show your love for Omnihub with this donation. You're awesome!</p>
+                <h4 class="tier-title lang" data-en="[Omnihub] Official Supporter" data-es="[Omnihub] Soporte Oficial">[Omnihub] Official Supporter</h4>
+                <p class="tier-desc lang" data-en="Show your love for Omnihub with this donation. You're awesome!" data-es="Muestra tu amor por Omnihub. ¡Eres increíble!">Show your love for Omnihub with this donation. You're awesome!</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">100</span>
@@ -673,8 +700,8 @@
                 <a href="https://www.roblox.com/game-pass/1783038092" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card" style="border-top: 3px solid #cd7f32;">
-                <h4 class="tier-title" style="color:#cd7f32;">[Omnihub] Bronze Supporter</h4>
-                <p class="tier-desc">Helping us maintain and improve the hub every single day.</p>
+                <h4 class="tier-title lang" style="color:#cd7f32;" data-en="[Omnihub] Bronze Supporter" data-es="[Omnihub] Soporte Bronce">[Omnihub] Bronze Supporter</h4>
+                <p class="tier-desc lang" data-en="Helping us maintain and improve the hub every single day." data-es="Ayudándonos a mantener y mejorar el hub todos los días.">Helping us maintain and improve the hub every single day.</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">200</span>
@@ -682,8 +709,8 @@
                 <a href="https://www.roblox.com/game-pass/1781425140" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card" style="border-top: 3px solid #c0c0c0;">
-                <h4 class="tier-title" style="color:#c0c0c0;">[Omnihub] Silver Supporter</h4>
-                <p class="tier-desc">A very generous contribution to the project. Massive thanks!</p>
+                <h4 class="tier-title lang" style="color:#c0c0c0;" data-en="[Omnihub] Silver Supporter" data-es="[Omnihub] Soporte Plata">[Omnihub] Silver Supporter</h4>
+                <p class="tier-desc lang" data-en="A very generous contribution to the project. Massive thanks!" data-es="Una contribución muy generosa al proyecto. ¡Muchas gracias!">A very generous contribution to the project. Massive thanks!</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">500</span>
@@ -691,8 +718,8 @@
                 <a href="https://www.roblox.com/game-pass/1779793102" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card" style="border-top: 3px solid #ffd700;">
-                <h4 class="tier-title" style="color:#ffd700;">[Omnihub] Gold Supporter</h4>
-                <p class="tier-desc">Incredible support! You are keeping the keyless dream alive.</p>
+                <h4 class="tier-title lang" style="color:#ffd700;" data-en="[Omnihub] Gold Supporter" data-es="[Omnihub] Soporte Oro">[Omnihub] Gold Supporter</h4>
+                <p class="tier-desc lang" data-en="Incredible support! You are keeping the keyless dream alive." data-es="¡Soporte increíble! Mantienes vivo el sueño sin keys.">Incredible support! You are keeping the keyless dream alive.</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">1,000</span>
@@ -700,8 +727,8 @@
                 <a href="https://www.roblox.com/game-pass/1781422037" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card" style="border-top: 3px solid #00ffff;">
-                <h4 class="tier-title" style="color:#00ffff;">[Omnihub] Diamond Supporter</h4>
-                <p class="tier-desc">Elite tier. Your donation helps fund high-end bypass research.</p>
+                <h4 class="tier-title lang" style="color:#00ffff;" data-en="[Omnihub] Diamond Supporter" data-es="[Omnihub] Soporte Diamante">[Omnihub] Diamond Supporter</h4>
+                <p class="tier-desc lang" data-en="Elite tier. Your donation helps fund high-end bypass research." data-es="Nivel de élite. Tu donación ayuda a investigar bypasses.">Elite tier. Your donation helps fund high-end bypass research.</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">2,000</span>
@@ -709,8 +736,8 @@
                 <a href="https://www.roblox.com/game-pass/1780481109" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card" style="border-top: 3px solid #ff00ff;">
-                <h4 class="tier-title" style="color:#ff00ff;">[Omnihub] Omni God Tier</h4>
-                <p class="tier-desc">Absolute legend. You are actively shaping the future of Omni Hub.</p>
+                <h4 class="tier-title lang" style="color:#ff00ff;" data-en="[Omnihub] Omni God Tier" data-es="[Omnihub] Nivel Omni Dios">[Omnihub] Omni God Tier</h4>
+                <p class="tier-desc lang" data-en="Absolute legend. You are actively shaping the future of Omni Hub." data-es="Leyenda absoluta. Estás forjando el futuro de Omni Hub.">Absolute legend. You are actively shaping the future of Omni Hub.</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">5,000</span>
@@ -718,8 +745,8 @@
                 <a href="https://www.roblox.com/game-pass/1783036070" target="_blank" class="tier-btn lang" data-en="Donate via Roblox" data-es="Donar en Roblox">Donate via Roblox</a>
             </div>
             <div class="donate-card" style="border-top: 3px solid var(--accent-green);">
-                <h4 class="tier-title" style="color:var(--accent-green);">[Omnihub] Galactic Supporter</h4>
-                <p class="tier-desc">The highest honor. You are literally funding the future of this script!</p>
+                <h4 class="tier-title lang" style="color:var(--accent-green);" data-en="[Omnihub] Galactic Supporter" data-es="[Omnihub] Soporte Galáctico">[Omnihub] Galactic Supporter</h4>
+                <p class="tier-desc lang" data-en="The highest honor. You are literally funding the future of this script!" data-es="El mayor honor. ¡Estás financiando el futuro de este script!">The highest honor. You are literally funding the future of this script!</p>
                 <div class="tier-price-wrapper">
                     <img src="assets/img/Robux.png" alt="Robux">
                     <span class="tier-price">10,000</span>
