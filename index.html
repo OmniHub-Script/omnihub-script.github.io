@@ -179,78 +179,78 @@
         .observe-me.is-visible { opacity: 1; transform: translateY(0); }
 
         /* =========================================================
-           7. RÉPLICAS VISUALES LUA (OMNI HUB V6.8 Y MAESTRO)
+           7. RÉPLICAS VISUALES LUA (ESTILO CAPTURA EXACTA)
            ========================================================= */
-        .lua-replica-container { display: flex; justify-content: center; margin: 60px 0 100px; perspective: 1200px; z-index: 10; position: relative; }
-        .omni-hub-window { width: 900px; height: 550px; position: relative; transform: rotateX(5deg) rotateY(-5deg); box-shadow: -20px 30px 50px rgba(0,0,0,0.6); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Inter', sans-serif; cursor: crosshair; }
-        .omni-hub-window:hover { transform: rotateX(0deg) rotateY(0deg) scale(1.03); box-shadow: 0 40px 60px rgba(212, 175, 55, 0.15); }
+        /* Contenedor con efecto 3D */
+        .lua-replica-container { display: flex; justify-content: center; margin: 40px 0; perspective: 1200px; z-index: 10; position: relative; }
         
-        .lua-header { position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: #191919; border-radius: 8px; border: 2px solid #d4af37; padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; }
-        .lua-title { color: #d4af37; font-family: 'Gotham', 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 900; margin: 0; line-height: 1.2; text-align: left; }
+        /* Ventana completa (se mueve en bloque, lo de dentro no es interactivo) */
+        .omni-hub-window { width: 880px; height: 530px; position: relative; transform: rotateX(5deg) rotateY(-5deg); box-shadow: -20px 30px 50px rgba(0,0,0,0.6); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Inter', sans-serif; user-select: none; pointer-events: none; }
+        .lua-replica-container:hover .omni-hub-window { transform: rotateX(0deg) rotateY(0deg) scale(1.02); box-shadow: 0 40px 60px rgba(255, 50, 50, 0.15); }
+        
+        /* --- ESTILOS OMNI HUB V6.8 (ROJO) --- */
+        .lua-header { position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: #191919; border-radius: 8px; border: 2px solid #ff3232; padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; }
+        .lua-title { color: #ff3232; font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 900; margin: 0; line-height: 1.1; text-align: left; letter-spacing: 1px;}
         .lua-subtitle { color: #c8c8c8; font-size: 11px; font-weight: 600; text-align: left; }
-        .lua-credits { color: #969696; font-size: 10px; position: absolute; left: 250px; top: 35px; }
-        .lua-profiles { position: absolute; right: 15px; top: 10px; width: 280px; height: 40px; background: #0f0f0f; border-radius: 5px; display: flex; align-items: center; padding: 0 5px; gap: 5px;}
-        .lua-prof-input { background: transparent; border: none; color: white; font-weight: bold; font-size: 12px; width: 100px; outline: none; padding-left: 5px;}
-        .lua-prof-drop { background: #1e1e1e; color: #d4af37; border: none; border-radius: 4px; padding: 4px 8px; font-size: 10px; cursor: pointer;}
-        .lua-prof-save { background: #0096ff; color: white; border: none; border-radius: 4px; padding: 6px 10px; font-weight: bold; font-size: 11px; flex-grow: 1; cursor: pointer;}
-
-        .lua-main { position: absolute; top: 70px; left: 0; width: 580px; height: 480px; background: #191919; border-radius: 8px; border: 2px solid rgba(212, 175, 55, 0.3); overflow: hidden; display: flex; flex-direction: column; padding: 10px; }
-        .lua-btn-chars { background: #c89632; color: white; font-weight: bold; font-size: 12px; padding: 8px; text-align: center; border-radius: 5px; margin-bottom: 10px; }
-        .lua-scroll { flex-grow: 1; overflow-y: auto; padding-right: 5px; display: flex; flex-direction: column; gap: 5px; }
-        .lua-scroll::-webkit-scrollbar { width: 4px; }
-        .lua-scroll::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+        .lua-credits { color: #969696; font-size: 10px; position: absolute; left: 240px; top: 35px; }
         
-        .lua-category { color: #ffc832; font-family: 'Gotham', sans-serif; font-weight: 900; font-size: 13px; margin: 10px 0 5px 5px; text-align: left; }
+        .lua-profiles { position: absolute; right: 15px; top: 10px; width: 280px; height: 35px; background: #0f0f0f; border-radius: 5px; display: flex; align-items: center; padding: 0 5px; gap: 5px; border: 1px solid #282828;}
+        .lua-prof-input { background: transparent; border: none; color: white; font-weight: bold; font-size: 12px; width: 100px; padding-left: 5px;}
+        .lua-prof-drop { background: #1e1e1e; color: #ff3232; border: none; border-radius: 4px; padding: 4px 8px; font-size: 10px; }
+        .lua-prof-save { background: #3296ff; color: white; border: none; border-radius: 4px; padding: 6px 10px; font-weight: bold; font-size: 11px; flex-grow: 1; text-align: center;}
+
+        .lua-main { position: absolute; top: 70px; left: 0; width: 550px; height: 460px; background: #191919; border-radius: 8px; border: 2px solid rgba(255, 50, 50, 0.3); display: flex; flex-direction: column; padding: 10px; }
+        .lua-btn-chars { background: #ff3232; color: white; font-weight: bold; font-size: 13px; padding: 10px; text-align: center; border-radius: 5px; margin-bottom: 10px; letter-spacing: 1px;}
+        .lua-scroll { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; }
+        
+        .lua-category { color: #ff3232; font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-size: 14px; margin: 10px 0 2px 5px; text-align: left; text-transform: uppercase;}
         .lua-toggle-row { background: #282828; border-radius: 5px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; }
-        .lua-toggle-name { color: white; font-weight: 600; font-size: 12px; }
-        .lua-toggle-controls { display: flex; gap: 5px; align-items: center; }
-        .lua-key-btn { background: #3c3c3c; color: white; padding: 4px 12px; border-radius: 5px; font-size: 11px; min-width: 40px; text-align: center; }
-        .lua-onoff-btn { background: #c83232; color: white; padding: 4px 15px; border-radius: 5px; font-size: 11px; font-weight: bold; min-width: 50px; text-align: center; }
+        .lua-toggle-name { color: white; font-weight: 600; font-size: 12px; display: flex; align-items: center;}
+        .lua-toggle-controls { display: flex; gap: 6px; align-items: center; }
+        .lua-key-btn { background: #3c3c3c; color: white; padding: 5px 12px; border-radius: 5px; font-size: 11px; min-width: 40px; text-align: center; font-family: 'Fira Code', monospace;}
+        .lua-onoff-btn { background: #c83232; color: white; padding: 5px 15px; border-radius: 5px; font-size: 11px; font-weight: bold; min-width: 55px; text-align: center; }
         .lua-onoff-btn.active { background: #32c832; }
-        .lua-mini-lbl { color: #aaa; font-size: 10px; margin-left: 5px; }
-        .lua-mini-box { background: #0f0f0f; color: #ffc832; border: none; border-radius: 4px; padding: 4px; font-size: 11px; width: 35px; text-align: center; outline: none;}
+        .lua-mini-lbl { color: #aaa; font-size: 10px; margin-left: 10px; margin-right: 5px;}
+        .lua-mini-box { background: #0f0f0f; color: #ff3232; border: 1px solid #333; border-radius: 4px; padding: 3px 6px; font-size: 11px; width: 45px; text-align: center; font-weight: bold;}
 
-        .lua-side { position: absolute; top: 70px; right: 0; width: 310px; height: 480px; background: #191919; border-radius: 8px; border: 2px solid rgba(212, 175, 55, 0.3); padding: 10px; display: flex; flex-direction: column; gap: 8px; }
-        .lua-side-title { color: #d4af37; font-family: 'Gotham', sans-serif; font-size: 13px; font-weight: 900; border-bottom: 1px solid rgba(212, 175, 55, 0.5); padding-bottom: 5px; text-align: left; }
-        .lua-side-scroll { flex-grow: 1; overflow-y: auto; padding-right: 5px; display: flex; flex-direction: column; gap: 8px;}
-        .lua-side-scroll::-webkit-scrollbar { width: 3px; }
-        .lua-side-scroll::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
-        .lua-side-box { background: #1e1e1e; border-radius: 5px; padding: 8px;}
-        .lua-side-box-title { font-weight: bold; font-size: 11px; margin-bottom: 5px; text-align: left;}
-        .lua-player-row { background: #282828; padding: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-        .lua-player-name { color: white; font-size: 10px; }
-        .lua-tp-btn { background: #c89632; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
-        .lua-add-btn { background: #3296ff; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
-        .lua-ene-btn { background: #ff6464; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
-        .lua-del-btn { background: #c83232; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+        .lua-side { position: absolute; top: 70px; right: 0; width: 320px; height: 460px; background: #191919; border-radius: 8px; border: 2px solid rgba(255, 50, 50, 0.3); padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+        .lua-side-title { color: #ff3232; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 900; border-bottom: 1px solid rgba(255, 50, 50, 0.4); padding-bottom: 8px; text-align: left; }
+        .lua-side-scroll { flex-grow: 1; display: flex; flex-direction: column; gap: 10px;}
+        .lua-side-box { background: #1e1e1e; border-radius: 5px; padding: 10px; border: 1px solid #2a2a2a;}
+        .lua-side-box-title { font-weight: bold; font-size: 12px; margin-bottom: 8px; text-align: left; color: #e5e7eb;}
+        .lua-player-row { background: #282828; padding: 6px 8px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .lua-player-name { color: white; font-size: 11px; font-weight: 500;}
+        .lua-tp-btn { background: #ffaa00; color: white; font-size: 10px; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
+        .lua-del-btn { background: #ff3232; color: white; font-size: 10px; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
+        .lua-ene-btn { background: #ff3232; color: white; font-size: 11px; padding: 8px; border-radius: 4px; font-weight: bold; text-align: center;}
+        .lua-add-btn { background: #3296ff; color: white; font-size: 11px; padding: 8px; border-radius: 4px; font-weight: bold; text-align: center;}
         
-        .lua-maestro-btn { background: #282828; color: white; font-weight: bold; font-size: 11px; padding: 8px; text-align: center; border-radius: 5px; margin-top: 2px; border: 1px solid #333;}
+        .lua-maestro-btn { background: #282828; color: white; font-weight: bold; font-size: 12px; padding: 10px; text-align: center; border-radius: 5px; border: 1px solid #3c3c3c;}
+        .lua-bottom-bar { display: flex; gap: 8px; height: 38px;}
+        .lua-gear { background: #282828; color: white; border: 1px solid #3c3c3c; border-radius: 5px; width: 40px; font-size: 16px; display: flex; align-items: center; justify-content: center;}
+        .lua-unload { background: #ff3232; color: white; border: none; border-radius: 5px; flex-grow: 1; font-weight: bold; font-size: 12px; display: flex; align-items: center; justify-content: center; letter-spacing: 0.5px;}
         
-        .lua-bottom-bar { display: flex; gap: 5px; height: 35px; margin-top: 2px;}
-        .lua-gear { background: #282828; color: white; border: none; border-radius: 5px; width: 35px; font-size: 16px;}
-        .lua-unload { background: #c83232; color: white; border: none; border-radius: 5px; flex-grow: 1; font-weight: bold; font-size: 12px;}
-        
-        /* Maestro CSS */
-        .maestro-wrapper { display: flex; width: 100%; height: 100%; min-height: 400px; }
-        .maestro-replica { width: 100%; height: 100%; display: flex; flex-direction: column; background: #141414; border-radius: 8px; border: 1px solid #333; overflow: hidden; font-family: 'Inter', sans-serif; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
-        .maestro-top { height: 40px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; background: #141414;}
-        .maestro-title { color: #ffc800; font-family: 'Gotham', sans-serif; font-weight: bold; font-size: 14px; }
-        .maestro-actions { display: flex; gap: 5px; }
-        .maestro-min { background: #3296ff; color: white; width: 30px; height: 30px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .maestro-close { background: #c83232; color: white; width: 30px; height: 30px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .maestro-content { padding: 10px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
-        .maestro-toolbar { display: flex; gap: 5px; align-items: center; }
-        .maestro-label { color: white; font-weight: 600; font-size: 11px; }
-        .maestro-input { background: #282828; color: #00ff64; border: none; padding: 4px 8px; border-radius: 4px; width: 40px; font-weight: bold; text-align: center; font-size: 11px; }
-        .maestro-key { background: #9664c8; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 11px; }
-        .maestro-clear { background: #963232; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-left: auto;}
-        .maestro-btn-row { display: flex; gap: 5px; }
-        .maestro-lib { background: #2878c8; color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 11px; flex: 1; text-align: center; }
-        .maestro-save { background: #32b464; color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 11px; flex: 1; text-align: center; }
-        .maestro-sheet-area { background: #1e1e1e; border: 1px solid #333; border-radius: 5px; flex-grow: 1; padding: 10px; color: #00ff64; font-family: 'Fira Code', monospace; font-size: 11px; text-align: left; overflow: hidden; line-height: 1.4;}
-        .maestro-sheet-area span { color: #ff0000; font-weight: bold; text-decoration: underline; }
-        .maestro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
-        .maestro-play-btn { padding: 10px; border-radius: 5px; color: white; font-weight: bold; font-size: 11px; text-align: center; }
+        /* --- ESTILOS OMNI MAESTRO (CALCADO DE LA CAPTURA) --- */
+        .maestro-wrapper { display: flex; width: 100%; height: 100%; min-height: 400px; pointer-events: none; user-select: none;}
+        .maestro-replica { width: 100%; height: 100%; display: flex; flex-direction: column; background: #191919; border-radius: 8px; border: 1px solid #333; overflow: hidden; font-family: 'Inter', sans-serif; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
+        .maestro-top { height: 45px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; background: #141414; border-bottom: 1px solid #2a2a2a;}
+        .maestro-title { color: #ffaa00; font-family: 'Space Grotesk', sans-serif; font-weight: bold; font-size: 14px; letter-spacing: 1px;}
+        .maestro-actions { display: flex; gap: 8px; }
+        .maestro-min { background: #3296ff; color: white; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px;}
+        .maestro-close { background: #ff3232; color: white; width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px;}
+        .maestro-content { padding: 15px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
+        .maestro-toolbar { display: flex; gap: 8px; align-items: center; }
+        .maestro-label { color: #c8c8c8; font-weight: 600; font-size: 11px; }
+        .maestro-input { background: #282828; color: #32c832; border: 1px solid #3c3c3c; padding: 5px 10px; border-radius: 4px; width: 50px; font-weight: bold; text-align: center; font-size: 12px; }
+        .maestro-key { background: #9664c8; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 12px; font-family: 'Fira Code', monospace;}
+        .maestro-clear { background: #ff3232; color: white; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-left: auto;}
+        .maestro-btn-row { display: flex; gap: 8px; }
+        .maestro-lib { background: #3296ff; color: white; padding: 10px; border-radius: 4px; font-weight: bold; font-size: 12px; flex: 1; text-align: center; }
+        .maestro-save { background: #32c832; color: white; padding: 10px; border-radius: 4px; font-weight: bold; font-size: 12px; flex: 1; text-align: center; }
+        .maestro-sheet-area { background: #141414; border: 1px solid #333; border-radius: 6px; flex-grow: 1; padding: 12px; color: #32c832; font-family: 'Fira Code', monospace; font-size: 12px; text-align: left; line-height: 1.6;}
+        .maestro-sheet-area span { color: #ff3232; font-weight: bold; text-decoration: underline; }
+        .maestro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .maestro-play-btn { padding: 12px; border-radius: 5px; color: white; font-weight: bold; font-size: 12px; text-align: center; }
     </style>
 </head>
 <body>
@@ -339,7 +339,51 @@
 
         <div class="section-header observe-me" style="margin-top: 100px;">
             <h2 class="section-title lang" data-en="FULL <span>ARSENAL</span>" data-es="ARSENAL <span>COMPLETO</span>">FULL <span>ARSENAL</span></h2>
-            <p class="section-subtitle lang" data-en="Interact with a live replica of the Omni Hub V6.8 interface directly on your browser." data-es="Interactúa con una réplica en vivo de la interfaz de Omni Hub V6.8 directamente en tu navegador.">Interact with a live replica of the Omni Hub V6.8 interface directly on your browser.</p>
+            <p class="section-subtitle lang" data-en="Detailed systems precisely calculated from the Omni Hub V6.8 Lua source code." data-es="Sistemas detallados calculados con precisión desde el código fuente Lua de Omni Hub V6.8.">Detailed systems precisely calculated from the Omni Hub V6.8 Lua source code.</p>
+        </div>
+
+        <div class="features-container observe-me" style="margin-bottom: 60px;">
+            <div class="feature-category">
+                <h3 class="lang" data-en="⚔️ Combat Engine" data-es="⚔️ Motor de Combate">⚔️ Combat Engine</h3>
+                <ul class="feature-list">
+                    <li>
+                        <h4 class="lang" data-en="Aimbot & Triggerbot" data-es="Aimbot y Triggerbot">Aimbot & Triggerbot</h4>
+                        <p class="lang" data-en="Silent Aim with custom Mouse Positioning, adjustable FOV, and precise Hit Chance calculation." data-es="Silent Aim con posicionamiento de ratón personalizado, FOV ajustable y cálculo preciso de Hit Chance.">Silent Aim with custom Mouse Positioning, adjustable FOV, and precise Hit Chance calculation.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Frame-Perfect Auto-Parry" data-es="Auto-Parry Frame-Perfect">Frame-Perfect Auto-Parry</h4>
+                        <p class="lang" data-en="Reads specific character animations to trigger instantaneous blocks. Includes Physics Combo Breaker to escape stun-locks." data-es="Lee animaciones específicas de personajes para bloquear al instante. Incluye Physics Combo Breaker para escapar de aturdimientos.">Reads specific character animations to trigger instantaneous blocks. Includes Physics Combo Breaker to escape stun-locks.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="feature-category">
+                <h3 class="lang" data-en="👁️ Intelligence & Priorities" data-es="👁️ Inteligencia y Prioridades">👁️ Intelligence & Priorities</h3>
+                <ul class="feature-list">
+                    <li>
+                        <h4 class="lang" data-en="Danger Area & Safe Perimeter" data-es="Danger Area y Perímetro Seguro">Danger Area & Safe Perimeter</h4>
+                        <p class="lang" data-en="Visualizes dynamic Danger Area circles showing exact enemy attack ranges, paired with a green defensive boundary." data-es="Visualiza círculos dinámicos mostrando el rango de ataque enemigo exacto, combinado con un límite defensivo verde.">Visualizes dynamic Danger Area circles showing exact enemy attack ranges, paired with a green defensive boundary.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Target Matrix (Friends/Enemies)" data-es="Matriz de Objetivos (Amigos/Enemigos)">Target Matrix (Friends/Enemies)</h4>
+                        <p class="lang" data-en="Maintain distinct lists for Ignored Friends and Priority Enemies. Prevents friendly fire during chaotic crossfire." data-es="Mantiene listas distintas para Amigos Ignorados y Enemigos Prioritarios. Evita el fuego amigo durante el fuego cruzado.">Maintain distinct lists for Ignored Friends and Priority Enemies. Prevents friendly fire during chaotic crossfire.</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="feature-category">
+                <h3 class="lang" data-en="🏃 Movement Engine" data-es="🏃 Motor de Movimiento">🏃 Movement Engine</h3>
+                <ul class="feature-list">
+                    <li>
+                        <h4 class="lang" data-en="Advanced Traversal" data-es="Movimiento Avanzado">Advanced Traversal</h4>
+                        <p class="lang" data-en="Bypass engine limits with Super Sprint and Dynamic Flight. Includes one-click Teleport to any player." data-es="Evade los límites del motor con Super Sprint y Vuelo Dinámico. Incluye Teletransporte de un clic a cualquier jugador.">Bypass engine limits with Super Sprint and Dynamic Flight. Includes one-click Teleport to any player.</p>
+                    </li>
+                    <li>
+                        <h4 class="lang" data-en="Astral Freecam" data-es="Cámara Libre Astral">Astral Freecam</h4>
+                        <p class="lang" data-en="Detaches your camera for invisible map scouting while keeping your physical body completely hidden and safe." data-es="Separa tu cámara para explorar el mapa de forma invisible manteniendo tu cuerpo físico completamente oculto y a salvo.">Detaches your camera for invisible map scouting while keeping your physical body completely hidden and safe.</p>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="lua-replica-container observe-me">
@@ -350,8 +394,8 @@
                     <span class="lua-credits">by bygalactico & Pere467</span>
                     <div class="lua-profiles">
                         <input type="text" class="lua-prof-input" value="Perfil 1" readonly>
-                        <button class="lua-prof-drop">▼</button>
-                        <button class="lua-prof-save">💾 GUARDAR</button>
+                        <span class="lua-prof-drop">▼</span>
+                        <div class="lua-prof-save">💾 GUARDAR</div>
                     </div>
                 </div>
                 <div class="lua-main">
@@ -359,49 +403,44 @@
                     <div class="lua-scroll">
                         <div class="lua-category">⚔️ COMBATE</div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Auto-Block Predictivo <span class="lua-mini-lbl">Ms:</span><input type="text" class="lua-mini-box" value="10" readonly></span>
+                            <span class="lua-toggle-name">Aimbot (Silent) <span class="lua-mini-lbl">Hit%:</span><span class="lua-mini-box">50</span></span>
+                            <div class="lua-toggle-controls">
+                                <span class="lua-key-btn">C</span>
+                                <span class="lua-onoff-btn active">ON</span>
+                            </div>
+                        </div>
+                        <div class="lua-toggle-row">
+                            <span class="lua-toggle-name">Auto-Block Predictivo <span class="lua-mini-lbl">Ms:</span><span class="lua-mini-box">10</span></span>
                             <div class="lua-toggle-controls">
                                 <span class="lua-key-btn">R</span>
                                 <span class="lua-onoff-btn active">ON</span>
                             </div>
                         </div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Auto-Ulti (AFK Farm) <span class="lua-mini-lbl">Prioridad:</span><input type="text" class="lua-mini-box" style="width:50px;" value="Dummys" readonly></span>
+                            <span class="lua-toggle-name">Auto-Ulti (AFK Farm)</span>
                             <div class="lua-toggle-controls">
                                 <span class="lua-key-btn">F</span>
                                 <span class="lua-onoff-btn">OFF</span>
                             </div>
                         </div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Hitbox Expander <span class="lua-mini-lbl">Tamaño:</span><input type="text" class="lua-mini-box" value="5.0" readonly></span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-onoff-btn">OFF</span>
-                            </div>
-                        </div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Anti-Team Alert (Vectores)</span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
 
                         <div class="lua-category">👁️ VISUALES & RADARES</div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Danger Area (Rangos de Ataque)</span>
+                            <span class="lua-toggle-name">Danger Area (Rangos)</span>
                             <div class="lua-toggle-controls">
                                 <span class="lua-onoff-btn active">ON</span>
                             </div>
                         </div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Safe Area Perimeter <span class="lua-mini-lbl">Distancia:</span><input type="text" class="lua-mini-box" value="15" readonly></span>
+                            <span class="lua-toggle-name">Safe Area Perimeter <span class="lua-mini-lbl">Dist:</span><span class="lua-mini-box">15</span></span>
                             <div class="lua-toggle-controls">
                                 <span class="lua-onoff-btn active">ON</span>
                             </div>
                         </div>
 
-                        <div class="lua-category">🏃 MOVIMIENTO AVANZADO</div>
+                        <div class="lua-category">🏃 MOVIMIENTO</div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Super Sprint <span class="lua-mini-lbl">Velocidad:</span><input type="text" class="lua-mini-box" value="120" readonly></span>
+                            <span class="lua-toggle-name">Super Sprint <span class="lua-mini-lbl">Vel:</span><span class="lua-mini-box">120</span></span>
                             <div class="lua-toggle-controls">
                                 <span class="lua-key-btn">X</span>
                                 <span class="lua-onoff-btn">OFF</span>
@@ -418,7 +457,7 @@
                                 <span class="lua-player-name">ToxicSlayer99</span>
                                 <div><span class="lua-tp-btn">TP</span> <span class="lua-del-btn">DEL</span></div>
                             </div>
-                            <button class="lua-ene-btn" style="width:100%; margin-top:2px;">+ AÑADIR ENEMIGO</button>
+                            <div class="lua-ene-btn">+ AÑADIR ENEMIGO</div>
                         </div>
                         <div class="lua-side-box">
                             <div class="lua-side-box-title">🛡️ Amigos (Ignorados)</div>
@@ -426,46 +465,20 @@
                                 <span class="lua-player-name">MyBro2024</span>
                                 <div><span class="lua-tp-btn">TP</span> <span class="lua-del-btn">DEL</span></div>
                             </div>
-                            <button class="lua-add-btn" style="width:100%; margin-top:2px;">+ AÑADIR AMIGO</button>
+                            <div class="lua-add-btn">+ AÑADIR AMIGO</div>
                         </div>
                     </div>
                     <div class="lua-maestro-btn">🎹 ABRIR OMNI MAESTRO V12</div>
                     <div class="lua-bottom-bar">
-                        <button class="lua-gear">⚙️</button>
-                        <button class="lua-unload">🛑 CERRAR OMNI HUB</button>
+                        <div class="lua-gear">⚙️</div>
+                        <div class="lua-unload">🛑 CERRAR OMNI HUB</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="features-container observe-me" style="grid-template-columns: repeat(2, 1fr); margin-top: 40px; margin-bottom: 40px;">
-            <div class="feature-category">
-                <h3 class="lang" data-en="⚔️ Combat & Tactics" data-es="⚔️ Combate y Tácticas">⚔️ Combat & Tactics</h3>
-                <ul class="feature-list">
-                    <li>
-                        <h4 class="lang" data-en="Predictive Auto-Block" data-es="Auto-Block Predictivo">Predictive Auto-Block</h4>
-                        <p class="lang" data-en="Calculates exact animation frames to block attacks perfectly. Configurable response time in milliseconds." data-es="Calcula frames exactos de animación para bloquear ataques a la perfección. Tiempo de respuesta configurable en ms.">Calculates exact animation frames to block attacks perfectly. Configurable response time in milliseconds.</p>
-                    </li>
-                    <li>
-                        <h4 class="lang" data-en="Priority Targeting & Hitbox" data-es="Objetivos Prioritarios y Hitboxes">Priority Targeting & Hitbox</h4>
-                        <p class="lang" data-en="Set priority enemies, expand their hitboxes subtly to land every hit, and completely ignore friends in crossfire." data-es="Marca enemigos prioritarios, expande sus hitboxes para no fallar golpes y evita atacar a tus amigos en el fuego cruzado.">Set priority enemies, expand their hitboxes subtly to land every hit, and completely ignore friends in crossfire.</p>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="feature-category">
-                <h3 class="lang" data-en="👁️ Intelligence & Movement" data-es="👁️ Inteligencia y Movimiento">👁️ Intelligence & Movement</h3>
-                <ul class="feature-list">
-                    <li>
-                        <h4 class="lang" data-en="Area Awareness (Safe/Danger)" data-es="Consciencia de Área (Safe/Danger)">Area Awareness (Safe/Danger)</h4>
-                        <p class="lang" data-en="Visualize exact enemy attack ranges in red, and establish a green safe perimeter that alerts you of intrusions." data-es="Visualiza el rango exacto de ataque enemigo en rojo y establece un perímetro verde que alerta de intrusiones.">Visualize exact enemy attack ranges in red, and establish a green safe perimeter that alerts you of intrusions.</p>
-                    </li>
-                    <li>
-                        <h4 class="lang" data-en="Advanced Traversal" data-es="Travesía Avanzada">Advanced Traversal</h4>
-                        <p class="lang" data-en="Utilize Super Sprint, Dynamic Flight, and One-Click TP to enemies or friends for ultimate map control." data-es="Utiliza Super Sprint, Vuelo Dinámico y TP a enemigos o amigos con un clic para control absoluto del mapa.">Utilize Super Sprint, Dynamic Flight, and One-Click TP to enemies or friends for ultimate map control.</p>
-                    </li>
-                </ul>
-            </div>
+        <div class="section-header observe-me" style="margin-top: 100px;">
+            <h2 class="section-title lang" data-en="ADVANCED <span>VISUALS</span>" data-es="VISUALES <span>AVANZADOS</span>">ADVANCED <span>VISUALS</span></h2>
         </div>
 
         <div class="bento-grid observe-me">
