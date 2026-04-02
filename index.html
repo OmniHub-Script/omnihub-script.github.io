@@ -121,16 +121,60 @@
         .section-title { font-size: 2.8rem; color: #fff; text-transform: uppercase; }
         .section-title span { color: var(--accent-green); text-shadow: 0 0 10px var(--accent-glow); }
         .section-subtitle { color: var(--text-muted); max-width: 600px; margin: 15px auto 0; font-size: 1rem; line-height: 1.6; }
-        /* Tarjetas más altas (350px en lugar de 250px) */
-        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; grid-auto-rows: 350px; max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
-        .bento-card { background: var(--bg-surface); border: 1px solid var(--glass-border); border-radius: 12px; padding: 30px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; transition: border-color 0.3s; }
+       /* Tarjetas más altas (400px) y forzadas a 2 columnas */
+        .bento-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* Fuerza 2 columnas */
+            gap: 30px; /* Un poco más de espacio entre tarjetas */
+            grid-auto-rows: 400px; /* Tarjetas más altas */
+            max-width: 1000px; /* Limita el ancho para mantener proporción */
+            margin: 0 auto 80px; 
+            padding: 0 20px; 
+        }
+        
+        /* Ajuste para pantallas pequeñas (móviles): cambia a 1 columna */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bento-card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 12px; 
+            padding: 30px; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            transition: border-color 0.3s; 
+        }
         .bento-card:hover { border-color: var(--glass-border-hover); }
-        .bento-card.large { grid-column: span 2; grid-row: span 2; }
+        
         /* Imagen con más opacidad por defecto para que se vea mejor */
-        .bento-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; opacity: 0.6; transition: opacity 0.4s; }
+        .bento-bg { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            z-index: 0; 
+            opacity: 0.6; 
+            transition: opacity 0.4s; 
+        }
         .bento-card:hover .bento-bg { opacity: 0.9; }
+        
         /* Degradado más suave que no tapa la imagen de arriba */
-        .bento-content { position: relative; z-index: 1; background: linear-gradient(to top, rgba(8,8,10,1) 40%, transparent); padding: 30px; margin: -30px; }
+        .bento-content { 
+            position: relative; 
+            z-index: 1; 
+            background: linear-gradient(to top, rgba(8,8,10,1) 40%, transparent); 
+            padding: 30px; 
+            margin: -30px; 
+        }
         .bento-card h3 { color: var(--text-main); font-size: 1.3rem; margin-bottom: 8px; }
         .bento-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
         .video-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 0; }
@@ -339,7 +383,7 @@
 
         <div class="section-header observe-me" style="margin-top: 100px;">
             <h2 class="section-title lang" data-en="FULL <span>ARSENAL</span>" data-es="ARSENAL <span>COMPLETO</span>">FULL <span>ARSENAL</span></h2>
-            <p class="section-subtitle lang" data-en="Detailed systems precisely calculated from the Omni Hub V6.8 Lua source code." data-es="Sistemas detallados calculados con precisión desde el código fuente Lua de Omni Hub V6.8.">Detailed systems precisely calculated from the Omni Hub V6.8 Lua source code.</p>
+            <p class="section-subtitle lang" data-en="Explore the detailed features based strictly on the Omni Hub V6.8 Lua script." data-es="Explora las funciones detalladas basadas estrictamente en el script Lua Omni Hub V6.8.">Explore the detailed features based strictly on the Omni Hub V6.8 Lua script.</p>
         </div>
 
         <div class="features-container observe-me" style="margin-bottom: 60px;">
@@ -347,26 +391,26 @@
                 <h3 class="lang" data-en="⚔️ Combat Engine" data-es="⚔️ Motor de Combate">⚔️ Combat Engine</h3>
                 <ul class="feature-list">
                     <li>
-                        <h4 class="lang" data-en="Aimbot & Triggerbot" data-es="Aimbot y Triggerbot">Aimbot & Triggerbot</h4>
-                        <p class="lang" data-en="Silent Aim with custom Mouse Positioning, adjustable FOV, and precise Hit Chance calculation." data-es="Silent Aim con posicionamiento de ratón personalizado, FOV ajustable y cálculo preciso de Hit Chance.">Silent Aim with custom Mouse Positioning, adjustable FOV, and precise Hit Chance calculation.</p>
+                        <h4 class="lang" data-en="Predictive Auto-Block" data-es="Auto-Block Predictivo">Predictive Auto-Block</h4>
+                        <p class="lang" data-en="Reads exact animation frames to trigger instantaneous blocks." data-es="Lee frames exactos de animación para bloquear al instante.">Reads exact animation frames to trigger instantaneous blocks.</p>
                     </li>
                     <li>
-                        <h4 class="lang" data-en="Frame-Perfect Auto-Parry" data-es="Auto-Parry Frame-Perfect">Frame-Perfect Auto-Parry</h4>
-                        <p class="lang" data-en="Reads specific character animations to trigger instantaneous blocks. Includes Physics Combo Breaker to escape stun-locks." data-es="Lee animaciones específicas de personajes para bloquear al instante. Incluye Physics Combo Breaker para escapar de aturdimientos.">Reads specific character animations to trigger instantaneous blocks. Includes Physics Combo Breaker to escape stun-locks.</p>
+                        <h4 class="lang" data-en="Auto-Ulti (Dummy Farm)" data-es="Auto-Ulti (Farmeo en Dummys)">Auto-Ulti (Dummy Farm)</h4>
+                        <p class="lang" data-en="Automatically targets the map's dummy bot to safely farm your ultimate gauge without targeting real players." data-es="Apunta automáticamente al dummy/bot del mapa para farmear tu barra de ultimate de forma segura sin atacar a jugadores reales.">Automatically targets the map's dummy bot to safely farm your ultimate gauge without targeting real players.</p>
                     </li>
                 </ul>
             </div>
 
             <div class="feature-category">
-                <h3 class="lang" data-en="👁️ Intelligence & Priorities" data-es="👁️ Inteligencia y Prioridades">👁️ Intelligence & Priorities</h3>
+                <h3 class="lang" data-en="👁️ Visuals & Radars" data-es="👁️ Visuales y Radares">👁️ Visuals & Radars</h3>
                 <ul class="feature-list">
                     <li>
                         <h4 class="lang" data-en="Danger Area & Safe Perimeter" data-es="Danger Area y Perímetro Seguro">Danger Area & Safe Perimeter</h4>
-                        <p class="lang" data-en="Visualizes dynamic Danger Area circles showing exact enemy attack ranges, paired with a green defensive boundary." data-es="Visualiza círculos dinámicos mostrando el rango de ataque enemigo exacto, combinado con un límite defensivo verde.">Visualizes dynamic Danger Area circles showing exact enemy attack ranges, paired with a green defensive boundary.</p>
+                        <p class="lang" data-en="Displays dynamic red circles for enemy attack ranges and a green defensive boundary." data-es="Muestra círculos rojos dinámicos para los rangos de ataque enemigos y un límite defensivo verde.">Displays dynamic red circles for enemy attack ranges and a green defensive boundary.</p>
                     </li>
                     <li>
-                        <h4 class="lang" data-en="Target Matrix (Friends/Enemies)" data-es="Matriz de Objetivos (Amigos/Enemigos)">Target Matrix (Friends/Enemies)</h4>
-                        <p class="lang" data-en="Maintain distinct lists for Ignored Friends and Priority Enemies. Prevents friendly fire during chaotic crossfire." data-es="Mantiene listas distintas para Amigos Ignorados y Enemigos Prioritarios. Evita el fuego amigo durante el fuego cruzado.">Maintain distinct lists for Ignored Friends and Priority Enemies. Prevents friendly fire during chaotic crossfire.</p>
+                        <h4 class="lang" data-en="Target Matrix" data-es="Matriz de Objetivos">Target Matrix</h4>
+                        <p class="lang" data-en="Maintain distinct lists for Priority Enemies and Ignored Friends to optimize your combat focus." data-es="Mantiene listas separadas para Enemigos Prioritarios y Amigos Ignorados para optimizar tu enfoque en combate.">Maintain distinct lists for Priority Enemies and Ignored Friends to optimize your combat focus.</p>
                     </li>
                 </ul>
             </div>
@@ -376,11 +420,7 @@
                 <ul class="feature-list">
                     <li>
                         <h4 class="lang" data-en="Advanced Traversal" data-es="Movimiento Avanzado">Advanced Traversal</h4>
-                        <p class="lang" data-en="Bypass engine limits with Super Sprint and Dynamic Flight. Includes one-click Teleport to any player." data-es="Evade los límites del motor con Super Sprint y Vuelo Dinámico. Incluye Teletransporte de un clic a cualquier jugador.">Bypass engine limits with Super Sprint and Dynamic Flight. Includes one-click Teleport to any player.</p>
-                    </li>
-                    <li>
-                        <h4 class="lang" data-en="Astral Freecam" data-es="Cámara Libre Astral">Astral Freecam</h4>
-                        <p class="lang" data-en="Detaches your camera for invisible map scouting while keeping your physical body completely hidden and safe." data-es="Separa tu cámara para explorar el mapa de forma invisible manteniendo tu cuerpo físico completamente oculto y a salvo.">Detaches your camera for invisible map scouting while keeping your physical body completely hidden and safe.</p>
+                        <p class="lang" data-en="Bypass engine limits with Super Sprint and Dynamic Flight. Includes direct Teleportation to specific players." data-es="Evade los límites del motor con Super Sprint y Vuelo Dinámico. Incluye Teletransporte directo a jugadores específicos.">Bypass engine limits with Super Sprint and Dynamic Flight. Includes direct Teleportation to specific players.</p>
                     </li>
                 </ul>
             </div>
@@ -402,13 +442,6 @@
                     <div class="lua-btn-chars">🔥 MOSTRAR ESP Y RANGOS (TODOS) 🔥</div>
                     <div class="lua-scroll">
                         <div class="lua-category">⚔️ COMBATE</div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Aimbot (Silent) <span class="lua-mini-lbl">Hit%:</span><span class="lua-mini-box">50</span></span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-key-btn">C</span>
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
                         <div class="lua-toggle-row">
                             <span class="lua-toggle-name">Auto-Block Predictivo <span class="lua-mini-lbl">Ms:</span><span class="lua-mini-box">10</span></span>
                             <div class="lua-toggle-controls">
@@ -477,16 +510,12 @@
             </div>
         </div>
 
-        <div class="section-header observe-me" style="margin-top: 100px;">
-            <h2 class="section-title lang" data-en="ADVANCED <span>VISUALS</span>" data-es="VISUALES <span>AVANZADOS</span>">ADVANCED <span>VISUALS</span></h2>
-        </div>
-
-        <div class="bento-grid observe-me">
+        <div class="bento-grid observe-me" style="grid-template-columns: repeat(2, 1fr); grid-auto-rows: 400px; max-width: 1000px; margin-top: 60px;">
             <div class="bento-card">
                 <img src="assets/img/safe-area.png" alt="Safe Area" class="bento-bg">
                 <div class="bento-content">
                     <h3 class="lang" data-en="🛡️ Safe Area Overlay" data-es="🛡️ Overlay de Zona Segura">🛡️ Safe Area Overlay</h3>
-                    <p class="lang" data-en="Impregnable visual perimeter that actively monitors close-range threats." data-es="Perímetro visual inexpugnable que monitoriza amenazas a corta distancia.">Impregnable visual perimeter that actively monitors close-range threats.</p>
+                    <p class="lang" data-en="Visual perimeter that actively monitors close-range threats." data-es="Perímetro visual que monitoriza amenazas a corta distancia.">Visual perimeter that actively monitors close-range threats.</p>
                 </div>
             </div>
 
@@ -494,7 +523,7 @@
                 <img src="assets/img/danger-area.png" alt="Danger Area" class="bento-bg">
                 <div class="bento-content">
                     <h3 class="lang" data-en="⚠️ Danger Area Radar" data-es="⚠️ Radar de Peligro">⚠️ Danger Area Radar</h3>
-                    <p class="lang" data-en="Real-time rendering of enemy attack ranges directly on your screen." data-es="Renderizado en tiempo real de los rangos de ataque enemigos en tu pantalla.">Real-time rendering of enemy attack ranges directly on your screen.</p>
+                    <p class="lang" data-en="Real-time rendering of enemy attack ranges." data-es="Renderizado en tiempo real de los rangos de ataque enemigos.">Real-time rendering of enemy attack ranges.</p>
                 </div>
             </div>
 
@@ -502,7 +531,7 @@
                 <img src="assets/img/sprint.png" alt="Super Sprint" class="bento-bg">
                 <div class="bento-content">
                     <h3 class="lang" data-en="⚡ Super Sprint" data-es="⚡ Súper Velocidad">⚡ Super Sprint</h3>
-                    <p class="lang" data-en="Move at blistering speeds across the map undetected by anti-cheats." data-es="Muévete a velocidades extremas por el mapa sin ser detectado por anti-cheats.">Move at blistering speeds across the map undetected by anti-cheats.</p>
+                    <p class="lang" data-en="Move at high speeds across the map." data-es="Muévete a altas velocidades por el mapa.">Move at high speeds across the map.</p>
                 </div>
             </div>
 
@@ -510,7 +539,7 @@
                 <img src="assets/img/fly.png" alt="Dynamic Flight" class="bento-bg">
                 <div class="bento-content">
                     <h3 class="lang" data-en="🌪️ Dynamic Flight" data-es="🌪️ Vuelo Dinámico">🌪️ Dynamic Flight</h3>
-                    <p class="lang" data-en="Take total control of the Z-axis. Features smooth physics transitions." data-es="Toma el control total del eje Z. Cuenta con transiciones de físicas suaves.">Take total control of the Z-axis. Features smooth physics transitions.</p>
+                    <p class="lang" data-en="Take control of the Z-axis with smooth flight." data-es="Toma el control del eje Z con vuelo suave.">Take control of the Z-axis with smooth flight.</p>
                 </div>
             </div>
         </div>
