@@ -182,40 +182,56 @@
            7. RÉPLICAS VISUALES LUA (OMNI HUB V6.8 Y MAESTRO)
            ========================================================= */
         .lua-replica-container { display: flex; justify-content: center; margin: 60px 0 100px; perspective: 1200px; z-index: 10; position: relative; }
-        .omni-hub-window { width: 710px; height: 500px; position: relative; transform: rotateX(5deg) rotateY(-5deg); box-shadow: -20px 30px 50px rgba(0,0,0,0.6); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Inter', sans-serif; cursor: crosshair; }
+        .omni-hub-window { width: 900px; height: 550px; position: relative; transform: rotateX(5deg) rotateY(-5deg); box-shadow: -20px 30px 50px rgba(0,0,0,0.6); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Inter', sans-serif; cursor: crosshair; }
         .omni-hub-window:hover { transform: rotateX(0deg) rotateY(0deg) scale(1.03); box-shadow: 0 40px 60px rgba(212, 175, 55, 0.15); }
         
         .lua-header { position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: #191919; border-radius: 8px; border: 2px solid #d4af37; padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; }
         .lua-title { color: #d4af37; font-family: 'Gotham', 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 900; margin: 0; line-height: 1.2; text-align: left; }
         .lua-subtitle { color: #c8c8c8; font-size: 11px; font-weight: 600; text-align: left; }
-        .lua-credits { color: #969696; font-size: 10px; position: absolute; left: 240px; top: 35px; }
-        
-        .lua-main { position: absolute; top: 70px; left: 0; width: 500px; height: 430px; background: #191919; border-radius: 8px; border: 2px solid rgba(212, 175, 55, 0.3); overflow: hidden; display: flex; flex-direction: column; padding: 10px; }
+        .lua-credits { color: #969696; font-size: 10px; position: absolute; left: 250px; top: 35px; }
+        .lua-profiles { position: absolute; right: 15px; top: 10px; width: 280px; height: 40px; background: #0f0f0f; border-radius: 5px; display: flex; align-items: center; padding: 0 5px; gap: 5px;}
+        .lua-prof-input { background: transparent; border: none; color: white; font-weight: bold; font-size: 12px; width: 100px; outline: none; padding-left: 5px;}
+        .lua-prof-drop { background: #1e1e1e; color: #d4af37; border: none; border-radius: 4px; padding: 4px 8px; font-size: 10px; cursor: pointer;}
+        .lua-prof-save { background: #0096ff; color: white; border: none; border-radius: 4px; padding: 6px 10px; font-weight: bold; font-size: 11px; flex-grow: 1; cursor: pointer;}
+
+        .lua-main { position: absolute; top: 70px; left: 0; width: 580px; height: 480px; background: #191919; border-radius: 8px; border: 2px solid rgba(212, 175, 55, 0.3); overflow: hidden; display: flex; flex-direction: column; padding: 10px; }
         .lua-btn-chars { background: #c89632; color: white; font-weight: bold; font-size: 12px; padding: 8px; text-align: center; border-radius: 5px; margin-bottom: 10px; }
-        
-        .lua-scroll { flex-grow: 1; overflow-y: auto; padding-right: 5px; }
+        .lua-scroll { flex-grow: 1; overflow-y: auto; padding-right: 5px; display: flex; flex-direction: column; gap: 5px; }
         .lua-scroll::-webkit-scrollbar { width: 4px; }
         .lua-scroll::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
         
-        .lua-category { color: #ffc832; font-family: 'Gotham', sans-serif; font-weight: 900; font-size: 14px; margin: 15px 0 10px 5px; text-align: left; }
-        .lua-toggle-row { background: #282828; border-radius: 5px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .lua-toggle-name { color: white; font-weight: 600; font-size: 13px; }
+        .lua-category { color: #ffc832; font-family: 'Gotham', sans-serif; font-weight: 900; font-size: 13px; margin: 10px 0 5px 5px; text-align: left; }
+        .lua-toggle-row { background: #282828; border-radius: 5px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; }
+        .lua-toggle-name { color: white; font-weight: 600; font-size: 12px; }
         .lua-toggle-controls { display: flex; gap: 5px; align-items: center; }
-        .lua-key-btn { background: #3c3c3c; color: white; padding: 4px 12px; border-radius: 5px; font-size: 12px; min-width: 40px; text-align: center; }
-        .lua-onoff-btn { background: #c83232; color: white; padding: 4px 15px; border-radius: 5px; font-size: 12px; font-weight: bold; min-width: 50px; text-align: center; }
+        .lua-key-btn { background: #3c3c3c; color: white; padding: 4px 12px; border-radius: 5px; font-size: 11px; min-width: 40px; text-align: center; }
+        .lua-onoff-btn { background: #c83232; color: white; padding: 4px 15px; border-radius: 5px; font-size: 11px; font-weight: bold; min-width: 50px; text-align: center; }
         .lua-onoff-btn.active { background: #32c832; }
+        .lua-mini-lbl { color: #aaa; font-size: 10px; margin-left: 5px; }
+        .lua-mini-box { background: #0f0f0f; color: #ffc832; border: none; border-radius: 4px; padding: 4px; font-size: 11px; width: 35px; text-align: center; outline: none;}
 
-        .lua-side { position: absolute; top: 70px; right: 0; width: 200px; height: 430px; background: #191919; border-radius: 8px; border: 2px solid rgba(212, 175, 55, 0.3); padding: 10px; display: flex; flex-direction: column; gap: 10px; }
-        .lua-side-title { color: #d4af37; font-family: 'Gotham', sans-serif; font-size: 13px; font-weight: 900; border-bottom: 1px solid rgba(212, 175, 55, 0.5); padding-bottom: 5px; text-align: left; margin-bottom: 5px; }
-        .lua-side-box { background: #1e1e1e; border-radius: 5px; padding: 10px; flex-grow: 1;}
-        .lua-side-box-title { color: #c896ff; font-weight: bold; font-size: 11px; margin-bottom: 5px; text-align: left;}
+        .lua-side { position: absolute; top: 70px; right: 0; width: 310px; height: 480px; background: #191919; border-radius: 8px; border: 2px solid rgba(212, 175, 55, 0.3); padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .lua-side-title { color: #d4af37; font-family: 'Gotham', sans-serif; font-size: 13px; font-weight: 900; border-bottom: 1px solid rgba(212, 175, 55, 0.5); padding-bottom: 5px; text-align: left; }
+        .lua-side-scroll { flex-grow: 1; overflow-y: auto; padding-right: 5px; display: flex; flex-direction: column; gap: 8px;}
+        .lua-side-scroll::-webkit-scrollbar { width: 3px; }
+        .lua-side-scroll::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+        .lua-side-box { background: #1e1e1e; border-radius: 5px; padding: 8px;}
+        .lua-side-box-title { font-weight: bold; font-size: 11px; margin-bottom: 5px; text-align: left;}
         .lua-player-row { background: #282828; padding: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
         .lua-player-name { color: white; font-size: 10px; }
         .lua-tp-btn { background: #c89632; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
-        .lua-maestro-btn { background: #282828; color: white; font-weight: bold; font-size: 11px; padding: 10px; text-align: center; border-radius: 5px; margin-top: 10px; }
+        .lua-add-btn { background: #3296ff; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+        .lua-ene-btn { background: #ff6464; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+        .lua-del-btn { background: #c83232; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
         
-        /* Réplica Omni Maestro V12 */
-        .maestro-wrapper { display: flex; width: 100%; height: 100%; min-height: 350px; }
+        .lua-maestro-btn { background: #282828; color: white; font-weight: bold; font-size: 11px; padding: 8px; text-align: center; border-radius: 5px; margin-top: 2px; border: 1px solid #333;}
+        
+        .lua-bottom-bar { display: flex; gap: 5px; height: 35px; margin-top: 2px;}
+        .lua-gear { background: #282828; color: white; border: none; border-radius: 5px; width: 35px; font-size: 16px;}
+        .lua-unload { background: #c83232; color: white; border: none; border-radius: 5px; flex-grow: 1; font-weight: bold; font-size: 12px;}
+        
+        /* Maestro CSS */
+        .maestro-wrapper { display: flex; width: 100%; height: 100%; min-height: 400px; }
         .maestro-replica { width: 100%; height: 100%; display: flex; flex-direction: column; background: #141414; border-radius: 8px; border: 1px solid #333; overflow: hidden; font-family: 'Inter', sans-serif; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
         .maestro-top { height: 40px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; background: #141414;}
         .maestro-title { color: #ffc800; font-family: 'Gotham', sans-serif; font-weight: bold; font-size: 14px; }
@@ -227,6 +243,7 @@
         .maestro-label { color: white; font-weight: 600; font-size: 11px; }
         .maestro-input { background: #282828; color: #00ff64; border: none; padding: 4px 8px; border-radius: 4px; width: 40px; font-weight: bold; text-align: center; font-size: 11px; }
         .maestro-key { background: #9664c8; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 11px; }
+        .maestro-clear { background: #963232; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 11px; margin-left: auto;}
         .maestro-btn-row { display: flex; gap: 5px; }
         .maestro-lib { background: #2878c8; color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 11px; flex: 1; text-align: center; }
         .maestro-save { background: #32b464; color: white; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 11px; flex: 1; text-align: center; }
@@ -331,138 +348,157 @@
                     <h1 class="lua-title">OMNI HUB</h1>
                     <span class="lua-subtitle">V6.8 | JUJUTSU SHENANIGANS</span>
                     <span class="lua-credits">by bygalactico & Pere467</span>
+                    <div class="lua-profiles">
+                        <input type="text" class="lua-prof-input" value="Perfil 1" readonly>
+                        <button class="lua-prof-drop">▼</button>
+                        <button class="lua-prof-save">💾 GUARDAR</button>
+                    </div>
                 </div>
                 <div class="lua-main">
                     <div class="lua-btn-chars">🔥 MOSTRAR ESP Y RANGOS (TODOS) 🔥</div>
                     <div class="lua-scroll">
                         <div class="lua-category">⚔️ COMBATE</div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Auto-Block Predictivo</span>
+                            <span class="lua-toggle-name">Auto-Block Predictivo <span class="lua-mini-lbl">Ms:</span><input type="text" class="lua-mini-box" value="10" readonly></span>
                             <div class="lua-toggle-controls">
                                 <span class="lua-key-btn">R</span>
                                 <span class="lua-onoff-btn active">ON</span>
                             </div>
                         </div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Auto-Ulti (AFK Farm)</span>
+                            <span class="lua-toggle-name">Auto-Ulti (AFK Farm) <span class="lua-mini-lbl">Prioridad:</span><input type="text" class="lua-mini-box" style="width:50px;" value="Dummys" readonly></span>
                             <div class="lua-toggle-controls">
                                 <span class="lua-key-btn">F</span>
                                 <span class="lua-onoff-btn">OFF</span>
                             </div>
                         </div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Anti-Team Alert</span>
+                            <span class="lua-toggle-name">Hitbox Expander <span class="lua-mini-lbl">Tamaño:</span><input type="text" class="lua-mini-box" value="5.0" readonly></span>
                             <div class="lua-toggle-controls">
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
-
-                        <div class="lua-category">👁️ VISUALES (ESP)</div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Danger Area (Círculos)</span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Safe Area Perimeter</span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-onoff-btn active">ON</span>
-                            </div>
-                        </div>
-
-                        <div class="lua-category">🏃 MOVIMIENTO</div>
-                        <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Super Sprint</span>
-                            <div class="lua-toggle-controls">
-                                <span class="lua-key-btn">X</span>
                                 <span class="lua-onoff-btn">OFF</span>
                             </div>
                         </div>
                         <div class="lua-toggle-row">
-                            <span class="lua-toggle-name">Vuelo Dinámico (Fly)</span>
+                            <span class="lua-toggle-name">Anti-Team Alert (Vectores)</span>
                             <div class="lua-toggle-controls">
-                                <span class="lua-key-btn">C</span>
+                                <span class="lua-onoff-btn active">ON</span>
+                            </div>
+                        </div>
+
+                        <div class="lua-category">👁️ VISUALES & RADARES</div>
+                        <div class="lua-toggle-row">
+                            <span class="lua-toggle-name">Danger Area (Rangos de Ataque)</span>
+                            <div class="lua-toggle-controls">
+                                <span class="lua-onoff-btn active">ON</span>
+                            </div>
+                        </div>
+                        <div class="lua-toggle-row">
+                            <span class="lua-toggle-name">Safe Area Perimeter <span class="lua-mini-lbl">Distancia:</span><input type="text" class="lua-mini-box" value="15" readonly></span>
+                            <div class="lua-toggle-controls">
+                                <span class="lua-onoff-btn active">ON</span>
+                            </div>
+                        </div>
+
+                        <div class="lua-category">🏃 MOVIMIENTO AVANZADO</div>
+                        <div class="lua-toggle-row">
+                            <span class="lua-toggle-name">Super Sprint <span class="lua-mini-lbl">Velocidad:</span><input type="text" class="lua-mini-box" value="120" readonly></span>
+                            <div class="lua-toggle-controls">
+                                <span class="lua-key-btn">X</span>
                                 <span class="lua-onoff-btn">OFF</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="lua-side">
-                    <div class="lua-side-title">🌍 JUGADORES</div>
-                    <div class="lua-side-box">
-                        <div class="lua-side-box-title">Seleccionar Jugador:</div>
-                        <div class="lua-player-row">
-                            <span class="lua-player-name">Player123</span>
-                            <span class="lua-tp-btn">TP</span>
+                    <div class="lua-side-title">🌍 JUGADORES Y LISTAS</div>
+                    <div class="lua-side-scroll">
+                        <div class="lua-side-box">
+                            <div class="lua-side-box-title">🎯 Enemigos (Prioridad)</div>
+                            <div class="lua-player-row">
+                                <span class="lua-player-name">ToxicSlayer99</span>
+                                <div><span class="lua-tp-btn">TP</span> <span class="lua-del-btn">DEL</span></div>
+                            </div>
+                            <button class="lua-ene-btn" style="width:100%; margin-top:2px;">+ AÑADIR ENEMIGO</button>
                         </div>
-                        <div class="lua-player-row">
-                            <span class="lua-player-name">NoobSlayer</span>
-                            <span class="lua-tp-btn">TP</span>
-                        </div>
-                        <div class="lua-player-row">
-                            <span class="lua-player-name">JJS_Pro</span>
-                            <span class="lua-tp-btn">TP</span>
+                        <div class="lua-side-box">
+                            <div class="lua-side-box-title">🛡️ Amigos (Ignorados)</div>
+                            <div class="lua-player-row">
+                                <span class="lua-player-name">MyBro2024</span>
+                                <div><span class="lua-tp-btn">TP</span> <span class="lua-del-btn">DEL</span></div>
+                            </div>
+                            <button class="lua-add-btn" style="width:100%; margin-top:2px;">+ AÑADIR AMIGO</button>
                         </div>
                     </div>
-                    <div class="lua-maestro-btn">🎹 OMNI MAESTRO V12</div>
+                    <div class="lua-maestro-btn">🎹 ABRIR OMNI MAESTRO V12</div>
+                    <div class="lua-bottom-bar">
+                        <button class="lua-gear">⚙️</button>
+                        <button class="lua-unload">🛑 CERRAR OMNI HUB</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="features-container observe-me" style="margin-top: 40px;">
+        <div class="features-container observe-me" style="grid-template-columns: repeat(2, 1fr); margin-top: 40px; margin-bottom: 40px;">
             <div class="feature-category">
-                <h3 class="lang" data-en="⚔️ Combat Engine" data-es="⚔️ Motor de Combate">⚔️ Combat Engine</h3>
+                <h3 class="lang" data-en="⚔️ Combat & Tactics" data-es="⚔️ Combate y Tácticas">⚔️ Combat & Tactics</h3>
                 <ul class="feature-list">
                     <li>
                         <h4 class="lang" data-en="Predictive Auto-Block" data-es="Auto-Block Predictivo">Predictive Auto-Block</h4>
-                        <p class="lang" data-en="Reads exact animation frames and auto-blocks incoming attacks in milliseconds. Toggle with [R]." data-es="Lee frames de animación exactos y bloquea ataques entrantes en milisegundos. Actívalo con [R].">Reads exact animation frames and auto-blocks incoming attacks in milliseconds. Toggle with [R].</p>
+                        <p class="lang" data-en="Calculates exact animation frames to block attacks perfectly. Configurable response time in milliseconds." data-es="Calcula frames exactos de animación para bloquear ataques a la perfección. Tiempo de respuesta configurable en ms.">Calculates exact animation frames to block attacks perfectly. Configurable response time in milliseconds.</p>
                     </li>
                     <li>
-                        <h4 class="lang" data-en="Auto-Ulti (Bot Hunter)" data-es="Auto-Ulti (Cazador de Bots)">Auto-Ulti (Bot Hunter)</h4>
-                        <p class="lang" data-en="Automatically hunts AFK players to farm your ultimate gauge passively. Toggle with [F]." data-es="Caza automáticamente a jugadores AFK para farmear tu ultimate pasivamente. Actívalo con [F].">Automatically hunts AFK players to farm your ultimate gauge passively. Toggle with [F].</p>
-                    </li>
-                    <li>
-                        <h4 class="lang" data-en="Anti-Team Alert" data-es="Alerta Anti-Teams">Anti-Team Alert</h4>
-                        <p class="lang" data-en="Detects if multiple players target you simultaneously and triggers an instant UI warning vector." data-es="Detecta si múltiples jugadores te atacan simultáneamente y dispara una alerta visual inmediata.">Detects if multiple players target you simultaneously and triggers an instant UI warning vector.</p>
+                        <h4 class="lang" data-en="Priority Targeting & Hitbox" data-es="Objetivos Prioritarios y Hitboxes">Priority Targeting & Hitbox</h4>
+                        <p class="lang" data-en="Set priority enemies, expand their hitboxes subtly to land every hit, and completely ignore friends in crossfire." data-es="Marca enemigos prioritarios, expande sus hitboxes para no fallar golpes y evita atacar a tus amigos en el fuego cruzado.">Set priority enemies, expand their hitboxes subtly to land every hit, and completely ignore friends in crossfire.</p>
                     </li>
                 </ul>
             </div>
 
             <div class="feature-category">
-                <h3 class="lang" data-en="👁️ Intelligence & ESP" data-es="👁️ Inteligencia y ESP">👁️ Intelligence & ESP</h3>
+                <h3 class="lang" data-en="👁️ Intelligence & Movement" data-es="👁️ Inteligencia y Movimiento">👁️ Intelligence & Movement</h3>
                 <ul class="feature-list">
                     <li>
-                        <h4 class="lang" data-en="Smart Danger Area" data-es="Zona de Peligro Inteligente">Smart Danger Area</h4>
-                        <p class="lang" data-en="Renders dynamic red circles around enemies showing their exact attack range and ultimate status." data-es="Renderiza círculos rojos dinámicos alrededor de los enemigos mostrando su rango de ataque y estado de ulti.">Renders dynamic red circles around enemies showing their exact attack range and ultimate status.</p>
+                        <h4 class="lang" data-en="Area Awareness (Safe/Danger)" data-es="Consciencia de Área (Safe/Danger)">Area Awareness (Safe/Danger)</h4>
+                        <p class="lang" data-en="Visualize exact enemy attack ranges in red, and establish a green safe perimeter that alerts you of intrusions." data-es="Visualiza el rango exacto de ataque enemigo en rojo y establece un perímetro verde que alerta de intrusiones.">Visualize exact enemy attack ranges in red, and establish a green safe perimeter that alerts you of intrusions.</p>
                     </li>
                     <li>
-                        <h4 class="lang" data-en="Safe Area Perimeter" data-es="Perímetro de Zona Segura">Safe Area Perimeter</h4>
-                        <p class="lang" data-en="Draws a green boundary around you. If crossed, it alerts you of immediate close-range threats." data-es="Dibuja un límite verde a tu alrededor. Si es cruzado, te alerta de amenazas inminentes.">Draws a green boundary around you. If crossed, it alerts you of immediate close-range threats.</p>
-                    </li>
-                    <li>
-                        <h4 class="lang" data-en="Player Radar & TP" data-es="Radar de Jugadores y TP">Player Radar & TP</h4>
-                        <p class="lang" data-en="A side panel showing all active players in the server with instant one-click Teleport buttons." data-es="Un panel lateral que muestra a todos los jugadores activos con botones de Teletransporte de un clic.">A side panel showing all active players in the server with instant one-click Teleport buttons.</p>
+                        <h4 class="lang" data-en="Advanced Traversal" data-es="Travesía Avanzada">Advanced Traversal</h4>
+                        <p class="lang" data-en="Utilize Super Sprint, Dynamic Flight, and One-Click TP to enemies or friends for ultimate map control." data-es="Utiliza Super Sprint, Vuelo Dinámico y TP a enemigos o amigos con un clic para control absoluto del mapa.">Utilize Super Sprint, Dynamic Flight, and One-Click TP to enemies or friends for ultimate map control.</p>
                     </li>
                 </ul>
             </div>
+        </div>
 
-            <div class="feature-category">
-                <h3 class="lang" data-en="🏃 Movement Engine" data-es="🏃 Motor de Movimiento">🏃 Movement Engine</h3>
-                <ul class="feature-list">
-                    <li>
-                        <h4 class="lang" data-en="Super Sprint" data-es="Super Sprint (Velocidad)">Super Sprint</h4>
-                        <p class="lang" data-en="Bypasses engine limits. Move at blistering speeds across the map undetected. Toggle with [X]." data-es="Evade los límites del motor. Muévete a velocidades extremas por el mapa. Actívalo con [X].">Bypasses engine limits. Move at blistering speeds across the map undetected. Toggle with [X].</p>
-                    </li>
-                    <li>
-                        <h4 class="lang" data-en="Dynamic Flight" data-es="Vuelo Dinámico">Dynamic Flight</h4>
-                        <p class="lang" data-en="Take total control of the Z-axis with smooth physics transitions. Toggle with [C]." data-es="Toma el control total del eje Z con transiciones físicas suaves. Actívalo con [C].">Take total control of the Z-axis with smooth physics transitions. Toggle with [C].</p>
-                    </li>
-                    <li>
-                        <h4 class="lang" data-en="Freecam (Astral Projection)" data-es="Cámara Libre (Freecam)">Freecam (Astral Projection)</h4>
-                        <p class="lang" data-en="Detach your camera to scout the map invisibly while keeping your physical body hidden." data-es="Separa tu cámara para explorar el mapa de forma invisible manteniendo tu cuerpo físico a salvo.">Detach your camera to scout the map invisibly while keeping your physical body hidden.</p>
-                    </li>
-                </ul>
+        <div class="bento-grid observe-me">
+            <div class="bento-card">
+                <img src="assets/img/safe-area.png" alt="Safe Area" class="bento-bg">
+                <div class="bento-content">
+                    <h3 class="lang" data-en="🛡️ Safe Area Overlay" data-es="🛡️ Overlay de Zona Segura">🛡️ Safe Area Overlay</h3>
+                    <p class="lang" data-en="Impregnable visual perimeter that actively monitors close-range threats." data-es="Perímetro visual inexpugnable que monitoriza amenazas a corta distancia.">Impregnable visual perimeter that actively monitors close-range threats.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <img src="assets/img/danger-area.png" alt="Danger Area" class="bento-bg">
+                <div class="bento-content">
+                    <h3 class="lang" data-en="⚠️ Danger Area Radar" data-es="⚠️ Radar de Peligro">⚠️ Danger Area Radar</h3>
+                    <p class="lang" data-en="Real-time rendering of enemy attack ranges directly on your screen." data-es="Renderizado en tiempo real de los rangos de ataque enemigos en tu pantalla.">Real-time rendering of enemy attack ranges directly on your screen.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <img src="assets/img/sprint.png" alt="Super Sprint" class="bento-bg">
+                <div class="bento-content">
+                    <h3 class="lang" data-en="⚡ Super Sprint" data-es="⚡ Súper Velocidad">⚡ Super Sprint</h3>
+                    <p class="lang" data-en="Move at blistering speeds across the map undetected by anti-cheats." data-es="Muévete a velocidades extremas por el mapa sin ser detectado por anti-cheats.">Move at blistering speeds across the map undetected by anti-cheats.</p>
+                </div>
+            </div>
+
+            <div class="bento-card">
+                <img src="assets/img/fly.png" alt="Dynamic Flight" class="bento-bg">
+                <div class="bento-content">
+                    <h3 class="lang" data-en="🌪️ Dynamic Flight" data-es="🌪️ Vuelo Dinámico">🌪️ Dynamic Flight</h3>
+                    <p class="lang" data-en="Take total control of the Z-axis. Features smooth physics transitions." data-es="Toma el control total del eje Z. Cuenta con transiciones de físicas suaves.">Take total control of the Z-axis. Features smooth physics transitions.</p>
+                </div>
             </div>
         </div>
 
@@ -491,6 +527,7 @@
                             <span class="maestro-input">0.05</span>
                             <span class="maestro-label lang" data-en="| STOP KEY:" data-es="| TECLA STOP:">| STOP KEY:</span>
                             <span class="maestro-key">K</span>
+                            <div class="maestro-clear lang" data-en="STOP" data-es="DETENER">STOP</div>
                         </div>
                         <div class="maestro-btn-row">
                             <div class="maestro-lib lang" data-en="MIDI LIBRARY" data-es="LIBRERÍA MIDI">MIDI LIBRARY</div>
@@ -510,46 +547,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="section-header observe-me" style="margin-top: 100px;">
-            <h2 class="section-title lang" data-en="ADVANCED <span>VISUALS</span>" data-es="VISUALES <span>AVANZADOS</span>">ADVANCED <span>VISUALS</span></h2>
-            <p class="section-subtitle lang" data-en="Gain absolute map awareness with zero-lag overlays." data-es="Obtén consciencia absoluta del mapa con superposiciones sin lag.">Gain absolute map awareness with zero-lag overlays.</p>
-        </div>
-
-        <div class="bento-grid">
-            <div class="bento-card observe-me">
-                <img src="assets/img/safe-area.png" alt="Safe Area" class="bento-bg">
-                <div class="bento-content">
-                    <h3 class="lang" data-en="🛡️ Safe Area Overlay" data-es="🛡️ Overlay de Zona Segura">🛡️ Safe Area Overlay</h3>
-                    <p class="lang" data-en="Impregnable visual perimeter that actively monitors close-range threats." data-es="Perímetro visual inexpugnable que monitoriza amenazas a corta distancia.">Impregnable visual perimeter that actively monitors close-range threats.</p>
-                </div>
-            </div>
-
-            <div class="bento-card observe-me">
-                <img src="assets/img/danger-area.png" alt="Danger Area" class="bento-bg">
-                <div class="bento-content">
-                    <h3 class="lang" data-en="⚠️ Danger Area Radar" data-es="⚠️ Radar de Peligro">⚠️ Danger Area Radar</h3>
-                    <p class="lang" data-en="Real-time rendering of enemy attack ranges directly on your screen." data-es="Renderizado en tiempo real de los rangos de ataque enemigos en tu pantalla.">Real-time rendering of enemy attack ranges directly on your screen.</p>
-                </div>
-            </div>
-
-            <div class="bento-card observe-me">
-                <img src="assets/img/sprint.png" alt="Super Sprint" class="bento-bg">
-                <div class="bento-content">
-                    <h3 class="lang" data-en="⚡ Super Sprint" data-es="⚡ Súper Velocidad">⚡ Super Sprint</h3>
-                    <p class="lang" data-en="Move at blistering speeds across the map undetected by anti-cheats." data-es="Muévete a velocidades extremas por el mapa sin ser detectado por anti-cheats.">Move at blistering speeds across the map undetected by anti-cheats.</p>
-                </div>
-            </div>
-
-            <div class="bento-card observe-me">
-                <img src="assets/img/fly.png" alt="Dynamic Flight" class="bento-bg">
-                <div class="bento-content">
-                    <h3 class="lang" data-en="🌪️ Dynamic Flight" data-es="🌪️ Vuelo Dinámico">🌪️ Dynamic Flight</h3>
-                    <p class="lang" data-en="Take total control of the Z-axis. Features smooth physics transitions." data-es="Toma el control total del eje Z. Cuenta con transiciones de físicas suaves.">Take total control of the Z-axis. Features smooth physics transitions.</p>
-                </div>
-            </div>
-        </div>
     </section>
+    
     <style>
         /* =========================================================
            ESTILOS ESPECÍFICOS PARA LAS SECCIONES FINALES
