@@ -555,7 +555,72 @@
         }
         .paypal-container:hover { border-color: rgba(0, 112, 186, 0.5); background: rgba(0, 112, 186, 0.08); }
         .paypal-container p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; max-width: 650px;}
-
+/* Panel del Centro de Donación en Juego */
+        .roblox-experience-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 255, 102, 0.05) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .roblox-experience-container:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 40px rgba(0, 255, 102, 0.15);
+            transform: translateY(-5px);
+        }
+        .roblox-experience-title {
+            font-family: 'Space Grotesk';
+            font-size: 1.8rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .roblox-experience-title span {
+            color: var(--accent-green);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+        .roblox-experience-desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            max-width: 650px;
+        }
+        .play-btn {
+            background: var(--accent-green);
+            color: #000;
+            font-family: 'Space Grotesk';
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--accent-glow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .play-btn:hover {
+            background: #fff;
+            box-shadow: 0 15px 30px rgba(0, 255, 102, 0.4);
+            transform: translateY(-3px);
+        }
+        .play-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #000;
+        }
+        
         .roblox-header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 40px; }
         .roblox-header img { height: 40px; object-fit: contain; }
 
@@ -784,6 +849,22 @@
             </form>
         </div>
 
+<div class="roblox-experience-container observe-me">
+            <img src="assets/img/Roblox_Corporation_2025_logo.svg.png" alt="Roblox" style="height: 45px; object-fit: contain; margin-bottom: -10px;">
+            <h3 class="roblox-experience-title lang" data-en="OFFICIAL <span>DONATION CENTER</span>" data-es="CENTRO DE DONACIÓN <span>OFICIAL</span>">OFFICIAL <span>DONATION CENTER</span></h3>
+            
+            <p class="roblox-experience-desc lang" 
+               data-en="Join our in-game donation center! Unlike gamepasses, you can donate the same amount multiple times using developer products. Hang out, meet other exploiters, and support the Omni Hub directly inside Roblox." 
+               data-es="¡Únete a nuestro centro de donación en el juego! A diferencia de los pases, aquí puedes donar la misma cantidad repetidas veces usando productos de desarrollador. Pasa el rato y apoya a Omni Hub directamente dentro de Roblox.">
+               Join our in-game donation center! Unlike gamepasses, you can donate the same amount multiple times using developer products. Hang out, meet other exploiters, and support the Omni Hub directly inside Roblox.
+            </p>
+            
+            <a href="https://www.roblox.com/es/games/5836770597/Omni-Hub-Official-Donation-Center#!/about" target="_blank" class="play-btn">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <span class="lang" data-en="VISIT EXPERIENCE" data-es="VISITAR EXPERIENCIA">VISITAR EXPERIENCIA</span>
+            </a>
+        </div>
+        
         <div class="roblox-header observe-me">
             <img src="assets/img/Roblox_Corporation_2025_logo.svg.png" alt="Roblox">
             <h3 class="lang" style="color: #fff; font-family: 'Space Grotesk'; font-size: 1.5rem;" data-en="GAMEPASS TIERS" data-es="NIVELES DE GAMEPASS">GAMEPASS TIERS</h3>
